@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Основи Reinforcement Learning</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- 0. Базові налаштування та колірна схема --- */
+      :root {
+        --olive: #556b2f;
+        --khaki: #c3b091;
+        --sand: #d6cfc7;
+        --dark-gray: #3a3a3a;
+        --accent-red: #8b0000;
+        --bg-light: #fdfdfd;
+        --text-dark: #222;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--sand);
+        color: var(--text-dark);
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Roboto", sans-serif;
+        color: var(--olive);
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      h2 {
+        border-bottom: 2px solid var(--khaki);
+        padding-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: var(--olive);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      ul,
+      ol {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 2.5rem 2rem;
+        background-color: var(--bg-light);
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      section {
+        margin-bottom: 2.5rem;
+      }
+
+      img,
+      .video-placeholder {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+      }
+
+      /* --- 1. Вступний блок --- */
+      .header {
+        background-color: var(--dark-gray);
+        color: var(--sand);
+        text-align: center;
+        padding: 3rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        overflow: hidden; /* Для анімації */
+      }
+
+      .header h1 {
+        color: #fff;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .header p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto 1.5rem auto;
+        color: var(--sand);
+      }
+
+      /* Анімація циклу */
+      .rl-animation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 80px;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .anim-box {
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: var(--dark-gray);
+        font-weight: 700;
+      }
+
+      .agent {
+        background-color: var(--khaki);
+      }
+
+      .env {
+        background-color: var(--olive);
+        color: #fff;
+      }
+
+      .arrow {
+        position: absolute;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      /* Дія (Агент -> Середовище) */
+      .arrow-action {
+        top: 10px;
+        animation: slide-right 2s ease-in-out infinite;
+      }
+
+      /* Стан/Винагорода (Середовище -> Агент) */
+      .arrow-reward {
+        bottom: 10px;
+        animation: slide-left 2s ease-in-out infinite;
+      }
+
+      @keyframes slide-right {
+        0% {
+          left: 35%;
+          opacity: 0;
+        }
+        20% {
+          left: 45%;
+          opacity: 1;
+        }
+        80% {
+          left: 55%;
+          opacity: 1;
+        }
+        100% {
+          left: 65%;
+          opacity: 0;
+        }
+      }
+
+      @keyframes slide-left {
+        0% {
+          left: 65%;
+          opacity: 0;
+        }
+        20% {
+          left: 55%;
+          opacity: 1;
+        }
+        80% {
+          left: 45%;
+          opacity: 1;
+        }
+        100% {
+          left: 35%;
+          opacity: 0;
+        }
+      }
+
+      /* --- 2. Теоретичний блок --- */
+      .rl-cycle-infographic {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+        margin: 2rem 0;
+      }
+      .cycle-item {
+        padding: 1rem;
+        background-color: #f4f4f4;
+        border: 2px solid var(--khaki);
+        border-radius: 6px;
+        min-width: 100px;
+      }
+      .cycle-arrow {
+        font-size: 2rem;
+        color: var(--olive);
+        font-weight: 700;
+        margin: 0.5rem;
+      }
+
+      .cards-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .card {
+        flex-basis: 200px;
+        flex-grow: 1;
+        background-color: var(--olive);
+        color: #fff;
+        padding: 1.5rem;
+        border-radius: 6px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        text-align: center;
+        position: relative;
+        cursor: help;
+      }
+
+      .card-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        bottom: 110%; /* Позиція над карткою */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 250px;
+        background-color: var(--dark-gray);
+        color: #fff;
+        text-align: left;
+        padding: 1rem;
+        border-radius: 6px;
+        z-index: 1;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        line-height: 1.5;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .card-tooltip::after {
+        /* Стрілка підказки */
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--dark-gray) transparent transparent transparent;
+      }
+
+      .card:hover.card-tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* --- 3. Приклад реалізації --- */
+      .collapsible {
+        background-color: var(--olive);
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 1.1rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .collapsible:after {
+        content: "\002B"; /* Знак + */
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+      }
+      .collapsible.active:after {
+        content: "\2212"; /* Знак - */
+      }
+      .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 0 0 5px 5px;
+      }
+      pre {
+        background-color: var(--dark-gray);
+        color: #f8f8f2;
+        padding: 1rem;
+        border-radius: 5px;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+      code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.95rem;
+      }
+      .video-placeholder {
+        background-color: #e0e0e0;
+        border: 2px dashed var(--dark-gray);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        text-align: center;
+        color: var(--dark-gray);
+        font-weight: 600;
+      }
+
+      /* --- 4. Військовий контекст --- */
+      .military-infographic {
+        background-color: var(--olive);
+        color: var(--sand);
+        border: 4px solid var(--khaki);
+        padding: 2rem;
+        border-radius: 6px;
+        text-align: center;
+      }
+      .military-infographic h3 {
+        color: #fff;
+        margin-top: 0;
+        font-size: 1.5rem;
+      }
+      .military-infographic p {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      /* --- 5. Інтерактивна самоперевірка --- */
+      #rlQuiz {
+        background-color: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 6px;
+        border: 1px solid var(--sand);
+      }
+      .quiz-question {
+        margin-bottom: 1.5rem;
+      }
+      .quiz-question p {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+      }
+      .quiz-question ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .quiz-question li {
+        margin-bottom: 0.5rem;
+      }
+      .quiz-question input[type="radio"] {
+        margin-right: 10px;
+      }
+      .quiz-question label {
+        cursor: pointer;
+      }
+      #quiz-submit {
+        background-color: var(--accent-red);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      #quiz-submit:hover {
+        background-color: #6a0000;
+      }
+      #quiz-results {
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 5px;
+      }
+      .results-correct {
+        background-color: #e6f7e6;
+        color: #2e7d32;
+      }
+      .results-incorrect {
+        background-color: #ffebee;
+        color: var(--accent-red);
+      }
+
+      /* --- 6. Завершальний блок --- */
+      .resource-list li {
+        margin-bottom: 0.5rem;
+      }
+      .cta-button {
+        display: inline-block;
+        background-color: var(--olive);
+        color: #fff;
+        padding: 14px 28px;
+        font-size: 1.1rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        border-radius: 5px;
+        text-align: center;
+        margin-top: 1rem;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+      .cta-button:hover {
+        background-color: #405022;
+        text-decoration: none;
+        transform: translateY(-2px);
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      /* --- Адаптивність --- */
+      @media (max-width: 768px) {
+        .container {
+          padding: 1.5rem 1rem;
+        }
+        .header {
+          padding: 2rem 1rem;
+        }
+        .header h1 {
+          font-size: 2rem;
+        }
+        .rl-cycle-infographic {
+          flex-direction: column;
+        }
+        .cycle-arrow {
+          transform: rotate(90deg);
+        }
+        .cards-container {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .card {
+          flex-basis: auto;
+        }
+        .card:hover.card-tooltip {
+          /* На мобільних пристроях hover не працює, але click працюватиме */
+          visibility: visible;
+          opacity: 1;
+          position: static;
+          transform: none;
+          width: 100%;
+          margin-top: 10px;
+        }
+        .card-tooltip::after {
+          display: none; /* Ховаємо стрілку */
+        }
+        @keyframes slide-right {
+          0% {
+            left: 20%;
+            opacity: 0;
+          }
+          20% {
+            left: 45%;
+            opacity: 1;
+          }
+          80% {
+            left: 55%;
+            opacity: 1;
+          }
+          100% {
+            left: 80%;
+            opacity: 0;
+          }
+        }
+        @keyframes slide-left {
+          0% {
+            left: 80%;
+            opacity: 0;
+          }
+          20% {
+            left: 55%;
+            opacity: 1;
+          }
+          80% {
+            left: 45%;
+            opacity: 1;
+          }
+          100% {
+            left: 20%;
+            opacity: 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Reinforcement Learning: Навчання через дію</h1>
+      <p>
+        Reinforcement Learning (RL) дозволяє агенту вчитися діяти у складному
+        середовищі, отримуючи винагороду за правильні рішення. У військовій
+        аналітиці цей підхід використовується для моделювання поведінки,
+        оптимізації рішень і створення автономних систем.
+      </p>
+
+      <div class="rl-animation">
+        <div class="anim-box agent">Агент</div>
+        <div class="arrow arrow-action">Дія ➔</div>
+        <div class="arrow arrow-reward">➔ Стан + Винагорода</div>
+        <div class="anim-box env">Середовище</div>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="theory">
+        <h2>Як працює Навчання з Підтримкою?</h2>
+        <p>
+          Процес RL — це безперервний цикл взаємодії між агентом і середовищем.
+        </p>
+
+        <div class="rl-cycle-infographic">
+          <div class="cycle-item">1. Стан (State)</div>
+          <div class="cycle-arrow">➔</div>
+          <div class="cycle-item">2. Дія (Action)</div>
+          <div class="cycle-arrow">➔</div>
+          <div class="cycle-item">3. Винагорода (Reward)</div>
+          <div class="cycle-arrow">➔</div>
+          <div class="cycle-item">4. Оновлення</div>
+        </div>
+
+        <p>Наведіть курсор на картки, щоб дізнатися про ключові поняття:</p>
+
+        <div class="cards-container">
+          <div class="card" tabindex="0">
+            Agent
+            <span class="card-tooltip">
+              <b>Агент</b> — це той, хто навчається і приймає рішення. Це може
+              бути програма, що керує дроном, роботом або віртуальним гравцем.
+            </span>
+          </div>
+          <div class="card" tabindex="0">
+            Environment
+            <span class="card-tooltip">
+              <b>Середовище</b> — це світ, в якому діє агент. Це може бути поле
+              бою, кібернетична мережа або симуляція гри.
+            </span>
+          </div>
+          <div class="card" tabindex="0">
+            Reward
+            <span class="card-tooltip">
+              <b>Винагорода</b> — це числовий сигнал (позитивний або
+              негативний), який середовище надсилає агенту у відповідь на його
+              дію. Це "морквина і батіг" для навчання.
+            </span>
+          </div>
+          <div class="card" tabindex="0">
+            Policy
+            <span class="card-tooltip">
+              <b>Політика (Стратегія)</b> — це "мозок" агента. Це правило або
+              функція, яку агент використовує, щоб обрати наступну дію на основі
+              поточного стану.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section id="example">
+        <h2>Приклад реалізації (Python + Gymnasium)</h2>
+        <p>
+          Для роботи з RL-середовищами часто використовують бібліотеку
+          <b>Gymnasium</b> (наступник OpenAI Gym). Нижче наведено базовий
+          приклад взаємодії "випадкового" агента з середовищем 'CartPole'.
+        </p>
+
+        <button class="collapsible">Показати / Сховати код</button>
+        <div class="content">
+          <pre><code>
+# Встановлення бібліотеки: pip install gymnasium
+import gymnasium as gym
+
+# 1. Створення середовища 'CartPole-v1'
+# Мета: утримувати жердину в балансі
+env = gym.make('CartPole-v1', render_mode='human') 
+
+print(f"Простір дій (Actions): {env.action_space}")
+print(f"Простір станів (Observations): {env.observation_space}")
+
+# 2. Початок нового епізоду
+observation, info = env.reset(seed=42)
+
+# 3. Запуск циклу взаємодії
+for _ in range(1000):
+    # Агент обирає ВИПАДКОВУ дію (0 - штовхнути ліворуч, 1 - праворуч)
+    action = env.action_space.sample() 
+    
+    # 4. Агент виконує дію і отримує зворотний зв'язок
+    observation, reward, done, truncated, info = env.step(action)
+    
+    env.render() # Відображення середовища
+    
+    # 5. Якщо епізод завершено (жердина впала), починаємо новий
+    if done or truncated:
+        print("Епізод завершено, починаємо новий.")
+        observation, info = env.reset()
+
+# 6. Закриття середовища
+env.close()
+</code></pre>
+        </div>
+
+        <p style="margin-top: 1rem">
+          <b>Пояснення:</b> Цей код не використовує "навчання" у повному сенсі —
+          агент просто діє хаотично (`env.action_space.sample()`). Справжній
+          RL-агент (наприклад, з бібліотеки Stable Baselines3) замінив би цей
+          випадковий вибір на вибір, заснований на його "політиці", і
+          використовував би `reward` для оновлення цієї політики, поступово
+          навчаючись утримувати баланс.
+        </p>
+
+        <div class="video-placeholder">
+          Тут має бути GIF або відео, яке показує, як агент<br />
+          спочатку (ліворуч) швидко програє, а потім (праворуч),<br />
+          після навчання, утримує баланс значно довше.
+        </div>
+      </section>
+
+      <section id="context">
+        <h2>Військовий контекст</h2>
+        <p>
+          У військовій сфері RL використовується для вирішення складних
+          динамічних завдань:
+        </p>
+        <ul>
+          <li>
+            <b>Планування траєкторії БПЛА:</b> Навчання дронів знаходити
+            оптимальні та безпечні маршрути в обхід систем ППО та РЕБ у
+            реальному часі.
+          </li>
+          <li>
+            <b>Адаптація автономних систем:</b> Навчання наземних роботів або
+            роїв дронів координувати дії в динамічних умовах бою без прямого
+            втручання людини.
+          </li>
+          <li>
+            <b>Моделювання у штабних іграх (Wargaming):</b> Створення
+            "розумного" супротивника (Red Team), який вчиться на діях гравця і
+            знаходить нетривіальні контрстратегії.
+          </li>
+        </ul>
+
+        <div class="military-infographic">
+          <h3>RL у військовій аналітиці:</h3>
+          <p><b>Агент</b> = Розвідувальний дрон</p>
+          <p><b>Середовище</b> = Бойове поле з ворожими РЛС</p>
+          <p><b>Дія</b> = Змінити курс (вгору, вниз, ліворуч, праворуч)</p>
+          <p>
+            <b>Винагорода</b> = +100 (досягнення цілі), -50 (виявлення РЛС),
+            -1000 (знищення)
+          </p>
+          <p>
+            <b>Політика</b> = Оптимальна стратегія польоту для максимізації
+            шансів на успіх
+          </p>
+        </div>
+      </section>
+
+      <section id="quiz">
+        <h2>Інтерактивна самоперевірка</h2>
+        <form id="rlQuiz">
+          <div class="quiz-question">
+            <p>1. Що таке "Політика" (Policy) в RL?</p>
+            <ul>
+              <li>
+                <label
+                  ><input type="radio" name="q1" value="a" /> Числовий сигнал,
+                  який агент отримує від середовища.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q1" value="b" /> Умови, в яких діє
+                  агент (наприклад, ігрове поле).</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q1" value="c" /> Стратегія або
+                  "мозок" агента, що визначає, яку дію обрати.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q1" value="d" /> Той, хто приймає
+                  рішення (наприклад, робот).</label
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="quiz-question">
+            <p>
+              2. У чому різниця між "Exploration" (Дослідження) та
+              "Exploitation" (Експлуатація)?
+            </p>
+            <ul>
+              <li>
+                <label
+                  ><input type="radio" name="q2" value="a" /> Exploration — це
+                  спроба нових, невідомих дій; Exploitation — це використання
+                  вже відомих, "найкращих" дій.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q2" value="b" /> Exploration — це
+                  аналіз даних; Exploitation — це збір даних.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q2" value="c" /> Це синоніми, що
+                  означають процес навчання агента.</label
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="quiz-question">
+            <p>
+              3. Яке з наведених завдань є класичним прикладом застосування RL у
+              військовій справі?
+            </p>
+            <ul>
+              <li>
+                <label
+                  ><input type="radio" name="q3" value="a" /> Розпізнавання типу
+                  танка на супутниковому знімку (Класифікація).</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q3" value="b" /> Навчання БПЛА
+                  автономно ухилятися від загроз під час виконання місії
+                  (Прийняття рішень).</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q3" value="c" /> Групування
+                  повідомлень про переміщення ворога за темами
+                  (Кластеризація).</label
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="quiz-question">
+            <p>4. Хто такий "Агент" (Agent)?</p>
+            <ul>
+              <li>
+                <label
+                  ><input type="radio" name="q4" value="a" /> Суб'єкт, що
+                  приймає рішення та навчається.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q4" value="b" /> Зовнішній світ, з
+                  яким взаємодіє суб'єкт.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q4" value="c" /> Негативний
+                  зворотний зв'язок за помилку.</label
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="quiz-question">
+            <p>5. Що таке "Винагорода" (Reward)?</p>
+            <ul>
+              <li>
+                <label
+                  ><input type="radio" name="q5" value="a" /> Кінцева мета
+                  місії.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q5" value="b" /> Набір усіх
+                  можливих дій агента.</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="radio" name="q5" value="c" /> Числовий сигнал
+                  зворотного зв'язку, який агент отримує після дії.</label
+                >
+              </li>
+            </ul>
+          </div>
+
+          <button type="submit" id="quiz-submit">Перевірити результат</button>
+        </form>
+        <div id="quiz-results"></div>
+      </section>
+
+      <section id="conclusion">
+        <h2>Висновки та ресурси</h2>
+        <p><b>Ключові тези:</b></p>
+        <ul>
+          <li>
+            Reinforcement Learning (RL) — це парадигма навчання через взаємодію
+            (спроби та помилки), заснована на отриманні винагород.
+          </li>
+          <li>
+            RL вирішує завдання <b>послідовного прийняття рішень</b>, а не
+            класифікації чи кластеризації.
+          </li>
+          <li>
+            Ключ до успішного RL — це правильне проектування
+            <b>функції винагороди</b>, яка точно відображає мету завдання.
+          </li>
+          <li>
+            У військовій аналітиці RL є потужним інструментом для моделювання,
+            оптимізації та створення адаптивних автономних систем.
+          </li>
+        </ul>
+
+        <h4>🔗 Корисні посилання та ресурси:</h4>
+        <ul class="resource-list">
+          <li>
+            <b>Бібліотеки Python для RL:</b>
+            <ul>
+              <li>
+                <a href="https://gymnasium.farama.org/" target="_blank"
+                  >Gymnasium</a
+                >
+                — стандартний інструментарій для створення RL-середовищ.
+              </li>
+              <li>
+                <a
+                  href="https://stable-baselines3.readthedocs.io/en/master/"
+                  target="_blank"
+                  >Stable Baselines3 (SB3)</a
+                >
+                — набір надійних реалізацій SOTA-алгоритмів RL (PPO, DQN, SAC).
+              </li>
+              <li>
+                <a
+                  href="https://docs.ray.io/en/latest/rllib/index.html"
+                  target="_blank"
+                  >Ray RLlib</a
+                >
+                — потужна бібліотека для масштабованого та розподіленого RL.
+              </li>
+              <li>
+                <a href="https://pettingzoo.farama.org/" target="_blank"
+                  >PettingZoo</a
+                >
+                — стандартна бібліотека для Multi-Agent RL (навчання роїв та
+                команд).
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Наукові статті (2023-2025):</b>
+            <ul>
+              <li>Дослідження MARL для роїв БПЛА (напр., GLIDE [1, 2]).</li>
+              <li>
+                Моделювання гетерогенних (різнорідних) команд (напр., HeMAC [3,
+                4]).
+              </li>
+              <li>
+                Застосування RL для кіберзахисту (напр., Moving Target Defense
+                [5]).
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <a href="#lab-task" class="cta-button"
+          >🔗 Перейти до лабораторного завдання «Створення RL-агента»</a
+        >
+      </section>
+    </div>
+
+    <footer>
+      <p>Навчальний модуль. 2025.</p>
+    </footer>
+
+    <script>
+      // --- Скрипт для блоку 3 (Collapsible) ---
+      var coll = document.getElementsByClassName("collapsible");
+      for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      }
+
+      // --- Скрипт для блоку 5 (Quiz) ---
+      document
+        .getElementById("rlQuiz")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Зупиняємо відправку форми
+
+          const correctAnswers = {
+            q1: "c",
+            q2: "a",
+            q3: "b",
+            q4: "a",
+            q5: "c",
+          };
+
+          let score = 0;
+          const totalQuestions = Object.keys(correctAnswers).length;
+          const formData = new FormData(this);
+
+          for (const [question, correctAnswer] of Object.entries(
+            correctAnswers
+          )) {
+            if (formData.get(question) === correctAnswer) {
+              score++;
+            }
+          }
+
+          const resultsDiv = document.getElementById("quiz-results");
+          let feedbackText = `Ваш результат: ${score} з ${totalQuestions}. `;
+
+          if (score === totalQuestions) {
+            feedbackText +=
+              "Ви чудово орієнтуєтесь у базових принципах RL! Наступний крок — спробуйте реалізувати агента у Python.";
+            resultsDiv.className = "results-correct";
+          } else if (score >= totalQuestions * 0.6) {
+            feedbackText +=
+              "Хороший результат! Перегляньте теорію, щоб закріпити знання.";
+            resultsDiv.className = "results-correct";
+          } else {
+            feedbackText +=
+              "Варто ще раз переглянути теоретичний блок. Спробуйте знову!";
+            resultsDiv.className = "results-incorrect";
+          }
+
+          resultsDiv.textContent = feedbackText;
+        });
+
+      // --- Скрипт для блоку 2 (Tooltip на мобільних) ---
+      // Дозволяє "клікати" на картки на тач-пристроях
+      document.querySelectorAll(".card").forEach((item) => {
+        item.addEventListener("click", (event) => {
+          // Цей простий трюк активує :hover стан на мобільних пристроях
+        });
+      });
+    </script>
+  </body>
+</html>
