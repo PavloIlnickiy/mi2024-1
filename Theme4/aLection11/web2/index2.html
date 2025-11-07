@@ -89,6 +89,7 @@
       }
 
       img,
+      video,
       .video-placeholder {
         max-width: 100%;
         height: auto;
@@ -525,6 +526,8 @@
           }
         }
       }
+      /* Video replaces GIF placeholder */
+      .video-placeholder { display: none !important; }
     </style>
   </head>
   <body>
@@ -650,6 +653,11 @@ env.close()
           використовував би `reward` для оновлення цієї політики, поступово
           навчаючись утримувати баланс.
         </p>
+
+        <video src="assets/intro2.mp4" controls playsinline>
+          Ваш браузер не підтримує відтворення відео. Ви можете завантажити файл:
+          <a href="assets/intro2.mp4">assets/intro2.mp4</a>.
+        </video>
 
         <div class="video-placeholder">
           Тут має бути GIF або відео, яке показує, як агент<br />
