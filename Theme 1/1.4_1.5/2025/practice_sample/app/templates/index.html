@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/style.css" />
+    <script src="static/app.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Expense Tracker</h1>
+      <section class="filter-section">
+        <label for="filter-category">Filter by Category:</label>
+        <input
+          type="text"
+          id="filter-category"
+          placeholder="Type category to filter..."
+        />
+      </section>
+
+      <div id="form-error" role="alert" aria-live="polite"></div>
+      <div id="list-error" role="alert" aria-live="polite"></div>
+
+      <section class="form-section">
+        <form id="add-expense-form">
+          <input type="text" id="category" placeholder="Category" required />
+          <input
+            type="number"
+            id="amount"
+            placeholder="Amount"
+            min="0.01"
+            step="0.01"
+            required
+          />
+          <button type="submit">Add Expense</button>
+        </form>
+      </section>
+
+      <section class="table-section">
+        <table id="expensesTable">
+          <thead>
+            <tr>
+              <th id="th-category" scope="col" data-column="category">
+                Category
+              </th>
+              <th id="th-amount" scope="col" data-column="amount">Amount</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="expenses-table-body">
+            <!-- Expenses will be populated dynamically -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

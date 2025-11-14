@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Запит інформації про подію</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Форма запиту інформації про подію</h2>
+    <form id="eventForm">
+      <label for="title">Назва події:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="date_time">Дата та час події:</label>
+      <input type="datetime-local" id="date_time" name="date_time" required>
+
+      <label for="description">Опис події:</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="category">Категорія події:</label>
+      <select id="category" name="category" required>
+        <option value="">Оберіть категорію</option>
+        <option value="Оперативна">Оперативна</option>
+        <option value="Аналітична">Аналітична</option>
+        <option value="Навчальна">Навчальна</option>
+        <option value="Організаційна">Організаційна</option>
+        <option value="Інша">Інша</option>
+      </select>
+
+      <button type="submit">Відправити</button>
+    </form>
+
+    <h3>Згенерований JSON:</h3>
+    <pre id="output"></pre>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

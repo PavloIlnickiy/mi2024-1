@@ -1,0 +1,12 @@
+
+
+
+Матеріали на диску:
+https://drive.google.com/drive/folders/1Ncn5Ge8GCxIEnvs1tD_IbjfURZ1az8Zd?usp=sharing
+
+
+Початковий рівень:
+https://www.kaggle.com/code/anandhuh/image-classification-using-cnn-for-beginners
+
+Аналіз фото з супутників:
+https://www.kaggle.com/code/sujithmandala/satellite-image-classification-cnn

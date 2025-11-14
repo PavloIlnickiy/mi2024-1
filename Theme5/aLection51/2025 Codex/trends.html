@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добові тренди активності</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="theme-olive">
+  <header class="app-header compact">
+    <h1>Тренди застосування сил</h1>
+    <p>Chart.js графіки з блоку <code>dailyTrends</code>: UAV, артилерія, вильоти авіації.</p>
+  </header>
+
+  <nav class="primary-nav">
+    <a href="index.html">Головна</a>
+    <a href="units.html">Підрозділи</a>
+    <a href="map.html">Оперативна карта</a>
+    <a href="trends.html" aria-current="page">Тренди</a>
+    <a href="about.html">Про систему</a>
+  </nav>
+
+  <main class="content-grid trends-grid">
+    <section class="panel control-panel">
+      <h2>Налаштування</h2>
+      <div class="control-row">
+        <label for="range-select">Період відображення</label>
+        <select id="range-select">
+          <option value="7">Останні 7 днів</option>
+          <option value="14">Останні 14 днів</option>
+          <option value="30" selected>Останні 30 днів</option>
+          <option value="all">Весь період</option>
+        </select>
+      </div>
+      <div class="control-row toggles">
+        <label><input type="checkbox" data-series="uav" checked> UAV</label>
+        <label><input type="checkbox" data-series="artillery" checked> Артилерія</label>
+        <label><input type="checkbox" data-series="sorties" checked> Sorties</label>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>UAV / Artillery / Sorties</h2>
+      <div class="chart-wrapper">
+        <canvas id="trendChart"></canvas>
+      </div>
+      <p class="muted small-note">Серії нормалізовані до 0–100% у межах вибраного періоду.</p>
+    </section>
+    <section class="panel">
+      <h2>Останні події</h2>
+      <ul id="trend-summary" class="summary-list">
+        <li>Очікування даних…</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Chart.js • Дані dailyTrends</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./js/trends.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Міні-ІАС: Аналітична панель</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="theme-olive">
+  <header class="app-header">
+    <h1>Міні-ІАС: Аналітична панель оцінки противника</h1>
+    <p>Навчальний демо-проєкт, що демонструє можливості міні-ІАС для аналізу сил противника за даними з файлу <code>sample.json</code>.</p>
+  </header>
+
+  <nav class="primary-nav">
+    <a href="index.html">Головна</a>
+    <a href="units.html">Підрозділи</a>
+    <a href="map.html">Оперативна карта</a>
+    <a href="trends.html">Тренди</a>
+    <a href="about.html">Про систему</a>
+  </nav>
+
+  <main class="content-grid">
+    <section class="panel indicators">
+      <h2>Стан противника</h2>
+      <div class="indicator-cards">
+        <article class="indicator" id="indicator-personnel">
+          <h3>Особовий склад</h3>
+          <p class="value">—</p>
+        </article>
+        <article class="indicator" id="indicator-tanks">
+          <h3>Танки</h3>
+          <p class="value">—</p>
+        </article>
+        <article class="indicator" id="indicator-artillery">
+          <h3>Артилерія</h3>
+          <p class="value">—</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel description">
+      <h2>Що всередині</h2>
+      <p>Файл <strong>sample.json</strong> містить агреговані дані про виявлені танкові, артилерійські, піхотні, БПЛА та інші підрозділи, їхню активність, маршрути, кластери загроз, а також історичні тренди та примітки аналітиків.</p>
+      <ul>
+        <li>Реальні координати й маршрути для інтерактивної карти.</li>
+        <li>Щоденні тренди застосування авіації, артилерії та БПЛА.</li>
+        <li>Сектори загроз та оперативні нотатки штабу.</li>
+      </ul>
+    </section>
+
+    <section class="panel system-note">
+      <h2>Оперативна примітка</h2>
+      <p>Дані оновлюються з єдиного джерела JSON на кожній сторінці, що дозволяє поєднати показники, карту та тренди в єдиній візуальній мові Olive UI.</p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>mini-IAS Enemy Analytics Dashboard • Olive Theme • 2025</small>
+  </footer>
+
+  <script src="./js/main.js" type="module"></script>
+</body>
+</html>

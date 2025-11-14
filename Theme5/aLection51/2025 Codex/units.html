@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Підрозділи противника</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="theme-olive">
+  <header class="app-header compact">
+    <h1>Підрозділи противника</h1>
+    <p>Список geo.units із можливістю швидкої фільтрації за типом та статусом.</p>
+  </header>
+
+  <nav class="primary-nav">
+    <a href="index.html">Головна</a>
+    <a href="units.html" aria-current="page">Підрозділи</a>
+    <a href="map.html">Оперативна карта</a>
+    <a href="trends.html">Тренди</a>
+    <a href="about.html">Про систему</a>
+  </nav>
+
+  <main class="content-grid">
+    <section class="panel filters">
+      <h2>Фільтри</h2>
+      <div class="filter-group">
+        <label for="filter-type">Тип підрозділу</label>
+        <select id="filter-type">
+          <option value="all">Усі</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-status">Статус</label>
+        <select id="filter-status">
+          <option value="all">Усі</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Виявлені підрозділи</h2>
+      <div id="units-grid" class="cards-grid">
+        <p class="muted">Завантаження даних…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Джерело: sample.json • Оновлення: 3 травня 2025</small>
+  </footer>
+
+  <script src="./js/units.js" type="module"></script>
+</body>
+</html>

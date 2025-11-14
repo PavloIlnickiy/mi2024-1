@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Про mini-IAS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="theme-olive">
+  <header class="app-header compact">
+    <h1>Про mini-IAS Enemy Analytics Dashboard</h1>
+    <p>Короткий опис архітектури, даних та принципів дизайну військової аналітичної панелі.</p>
+  </header>
+
+  <nav class="primary-nav">
+    <a href="index.html">Головна</a>
+    <a href="units.html">Підрозділи</a>
+    <a href="map.html">Оперативна карта</a>
+    <a href="trends.html">Тренди</a>
+    <a href="about.html" aria-current="page">Про систему</a>
+  </nav>
+
+  <main class="content-grid about-grid">
+    <section class="panel">
+      <h2>Мета системи</h2>
+      <p>Mini-IAS показує, як навіть один структурований JSON може стати джерелом ситуаційної обізнаності для штабу. Користувач отримує індикатори сил, деталізацію за підрозділами, інтерактивну карту та історичні тренди.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Структура sample.json</h2>
+      <ul>
+        <li><strong>enemyStrength</strong> — агреговані сили (особовий склад, техніка, моральний стан).</li>
+        <li><strong>geo.units/activity_points/routes/clusters</strong> — геопросторові об'єкти та активність.</li>
+        <li><strong>dailyTrends</strong> — історія застосування UAV, артилерії та вильотів.</li>
+        <li><strong>threatAssessment</strong> — градація секторів за рівнями загроз.</li>
+        <li><strong>notes</strong> — вільний текст аналітиків.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Olive Military UI</h2>
+      <p>Палітра вибудувана навколо кольорів <code>#3B5323</code>, <code>#556B2F</code> та <code>#C7D3A9</code>. Заголовки використовують шрифт Saira Stencil One для формування відчуття тактичного інтерфейсу, а панелі мають жорстку геометрію, наголошуючи на службовому характері ІАС.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Джерела та документація</h2>
+      <p>• Дані: навчальний файл <code>sample.json</code>.<br>• Карта: Leaflet.js + leaflet.heat.<br>• Графіки: Chart.js.<br>• Шрифти: Google Fonts (Saira Stencil One, Source Sans 3).</p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>mini-IAS • автор: Codex • 2025</small>
+  </footer>
+</body>
+</html>

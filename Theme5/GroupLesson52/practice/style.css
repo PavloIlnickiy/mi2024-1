@@ -52,6 +52,14 @@ button:hover {
     background-color: #27ae60;
 }
 
+footer {
+    color: #fff;
+    background-color: #035b6ba9;
+    text-align: center;
+    padding: 20px;
+    margin-top: 0px;
+}   
+
 /* Медіа-запити для адаптивного дизайну */
 @media screen and (max-width: 768px) {
     /* Для маленьких екранів (планшети і мобільні) */

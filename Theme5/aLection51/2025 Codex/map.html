@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оперативна карта</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="theme-olive">
+  <header class="app-header compact">
+    <h1>Оперативна карта</h1>
+    <p>Leaflet-візуалізація підрозділів, активності, маршрутів та кластерів загроз.</p>
+  </header>
+
+  <nav class="primary-nav">
+    <a href="index.html">Головна</a>
+    <a href="units.html">Підрозділи</a>
+    <a href="map.html" aria-current="page">Оперативна карта</a>
+    <a href="trends.html">Тренди</a>
+    <a href="about.html">Про систему</a>
+  </nav>
+
+  <main class="map-layout">
+    <aside class="panel legend">
+      <h2>Умовні позначення</h2>
+      <ul>
+        <li><span class="legend-icon legend-tank"></span> Танкові підрозділи</li>
+        <li><span class="legend-icon legend-artillery"></span> Артилерія / MLRS</li>
+        <li><span class="legend-icon legend-uav"></span> UAV / EW</li>
+        <li><span class="legend-icon legend-infantry"></span> Піхота та інші наземні сили</li>
+        <li><span class="legend-swatch warning"></span> Heatmap активності</li>
+        <li><span class="legend-swatch danger"></span> Кільця рівнів загроз</li>
+      </ul>
+
+      <form class="map-controls" aria-label="Налаштування карти">
+        <fieldset>
+          <legend>Шари</legend>
+          <label><input type="checkbox" data-layer="units" checked> Підрозділи</label>
+          <label><input type="checkbox" data-layer="heat" checked> Heatmap</label>
+          <label><input type="checkbox" data-layer="routes" checked> Маршрути</label>
+          <label><input type="checkbox" data-layer="clusters" checked> Кластери</label>
+        </fieldset>
+        <label class="slider-label" for="heat-radius">Радіус Heatmap
+          <input type="range" id="heat-radius" min="10" max="60" step="5" value="25">
+        </label>
+      </form>
+    </aside>
+    <section class="panel map-panel">
+      <div id="map" class="map-view"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Leaflet + Olive Overlay • Дані sample.json</small>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+  <script src="./js/map.js" type="module"></script>
+</body>
+</html>

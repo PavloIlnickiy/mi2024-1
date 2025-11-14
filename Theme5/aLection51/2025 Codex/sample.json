@@ -1,0 +1,2475 @@
+{
+  "title": "Розширене зведення обстановки станом на 3 травня 2025",
+  "enemyStrength": {
+    "personnel_total": 32150,
+    "equipment": {
+      "tanks": 318,
+      "ifv": 612,
+      "artillery": 410,
+      "mlrs": 125,
+      "uav": 580,
+      "ew_systems": 54
+    },
+    "estimated_morale": 0.58
+  },
+  "geo": {
+    "units": [
+      {
+        "id": "EN-101",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 1",
+        "lat": 48.053,
+        "lon": 37.841,
+        "strength": 73,
+        "status": "firing",
+        "last_seen": "2025-05-03T04:00:00Z",
+        "equipment": [
+          "T-72B3",
+          "T-90M"
+        ],
+        "notes": "Розгортають додаткові позиції"
+      },
+      {
+        "id": "EN-102",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 2",
+        "lat": 48.049,
+        "lon": 37.842,
+        "strength": 25,
+        "status": "hidden",
+        "last_seen": "2025-05-03T04:20:00Z",
+        "equipment": [
+          "2S7 Pion"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-103",
+        "type": "uav_section",
+        "name": "UAV Section 3",
+        "lat": 48.053,
+        "lon": 37.842,
+        "strength": 62,
+        "status": "firing",
+        "last_seen": "2025-05-03T04:40:00Z",
+        "equipment": [
+          "Supercam"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-104",
+        "type": "infantry_company",
+        "name": "Infantry Company 4",
+        "lat": 48.059,
+        "lon": 37.844,
+        "strength": 110,
+        "status": "defensive",
+        "last_seen": "2025-05-03T05:00:00Z",
+        "equipment": [
+          "BMP-2",
+          "MT-LB"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-105",
+        "type": "ew_team",
+        "name": "EW Team 5",
+        "lat": 48.076,
+        "lon": 37.856,
+        "strength": 4,
+        "status": "moving",
+        "last_seen": "2025-05-03T05:20:00Z",
+        "equipment": [
+          "Krasukha-4"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-106",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 6",
+        "lat": 48.078,
+        "lon": 37.846,
+        "strength": 58,
+        "status": "launching",
+        "last_seen": "2025-05-03T05:40:00Z",
+        "equipment": [
+          "Tornado-G"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-107",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 7",
+        "lat": 48.078,
+        "lon": 37.842,
+        "strength": 91,
+        "status": "rearming",
+        "last_seen": "2025-05-03T06:00:00Z",
+        "equipment": [
+          "Pantsir-S1"
+        ],
+        "notes": "Потребує уваги розвідки"
+      },
+      {
+        "id": "EN-108",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 8",
+        "lat": 48.098,
+        "lon": 37.855,
+        "strength": 140,
+        "status": "active",
+        "last_seen": "2025-05-03T06:20:00Z",
+        "equipment": [
+          "T-72B3",
+          "T-90M"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-109",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 9",
+        "lat": 48.09,
+        "lon": 37.846,
+        "strength": 95,
+        "status": "hidden",
+        "last_seen": "2025-05-03T06:40:00Z",
+        "equipment": [
+          "2S7 Pion"
+        ],
+        "notes": "Розгортають додаткові позиції"
+      },
+      {
+        "id": "EN-110",
+        "type": "uav_section",
+        "name": "UAV Section 10",
+        "lat": 48.108,
+        "lon": 37.841,
+        "strength": 61,
+        "status": "firing",
+        "last_seen": "2025-05-03T07:00:00Z",
+        "equipment": [
+          "Lancet"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-111",
+        "type": "infantry_company",
+        "name": "Infantry Company 11",
+        "lat": 48.057,
+        "lon": 37.867,
+        "strength": 100,
+        "status": "defensive",
+        "last_seen": "2025-05-03T07:20:00Z",
+        "equipment": [
+          "BTR-82A"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-112",
+        "type": "ew_team",
+        "name": "EW Team 12",
+        "lat": 48.059,
+        "lon": 37.857,
+        "strength": 97,
+        "status": "moving",
+        "last_seen": "2025-05-03T07:40:00Z",
+        "equipment": [
+          "Leer-3"
+        ],
+        "notes": "Розгортають додаткові позиції"
+      },
+      {
+        "id": "EN-113",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 13",
+        "lat": 48.065,
+        "lon": 37.864,
+        "strength": 21,
+        "status": "launching",
+        "last_seen": "2025-05-03T08:00:00Z",
+        "equipment": [
+          "Uragan"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-114",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 14",
+        "lat": 48.061,
+        "lon": 37.865,
+        "strength": 44,
+        "status": "rearming",
+        "last_seen": "2025-05-03T08:20:00Z",
+        "equipment": [
+          "Buk-M2"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-115",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 15",
+        "lat": 48.069,
+        "lon": 37.869,
+        "strength": 59,
+        "status": "active",
+        "last_seen": "2025-05-03T08:40:00Z",
+        "equipment": [
+          "T-80BV",
+          "T-72A"
+        ],
+        "notes": "Потребує уваги розвідки"
+      },
+      {
+        "id": "EN-116",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 16",
+        "lat": 48.087,
+        "lon": 37.866,
+        "strength": 61,
+        "status": "hidden",
+        "last_seen": "2025-05-03T09:00:00Z",
+        "equipment": [
+          "2S19 Msta-S"
+        ],
+        "notes": "Перекидання резервів з півночі"
+      },
+      {
+        "id": "EN-117",
+        "type": "uav_section",
+        "name": "UAV Section 17",
+        "lat": 48.082,
+        "lon": 37.855,
+        "strength": 57,
+        "status": "firing",
+        "last_seen": "2025-05-03T09:20:00Z",
+        "equipment": [
+          "Supercam"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-118",
+        "type": "infantry_company",
+        "name": "Infantry Company 18",
+        "lat": 48.088,
+        "lon": 37.863,
+        "strength": 104,
+        "status": "defensive",
+        "last_seen": "2025-05-03T09:40:00Z",
+        "equipment": [
+          "Mi-8 supply"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-119",
+        "type": "ew_team",
+        "name": "EW Team 19",
+        "lat": 48.091,
+        "lon": 37.853,
+        "strength": 140,
+        "status": "moving",
+        "last_seen": "2025-05-03T10:00:00Z",
+        "equipment": [
+          "Leer-3"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-120",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 20",
+        "lat": 48.106,
+        "lon": 37.868,
+        "strength": 105,
+        "status": "launching",
+        "last_seen": "2025-05-03T10:20:00Z",
+        "equipment": [
+          "Tornado-G"
+        ],
+        "notes": "Розгортають додаткові позиції"
+      },
+      {
+        "id": "EN-121",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 21",
+        "lat": 48.06,
+        "lon": 37.863,
+        "strength": 129,
+        "status": "rearming",
+        "last_seen": "2025-05-03T10:40:00Z",
+        "equipment": [
+          "Tor-M2"
+        ],
+        "notes": "Перекидання резервів з півночі"
+      },
+      {
+        "id": "EN-122",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 22",
+        "lat": 48.047,
+        "lon": 37.862,
+        "strength": 43,
+        "status": "active",
+        "last_seen": "2025-05-03T11:00:00Z",
+        "equipment": [
+          "T-80BV",
+          "T-72A"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-123",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 23",
+        "lat": 48.064,
+        "lon": 37.868,
+        "strength": 122,
+        "status": "hidden",
+        "last_seen": "2025-05-03T11:20:00Z",
+        "equipment": [
+          "2S7 Pion"
+        ],
+        "notes": "Потребує уваги розвідки"
+      },
+      {
+        "id": "EN-124",
+        "type": "uav_section",
+        "name": "UAV Section 24",
+        "lat": 48.077,
+        "lon": 37.877,
+        "strength": 5,
+        "status": "firing",
+        "last_seen": "2025-05-03T11:40:00Z",
+        "equipment": [
+          "Supercam"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-125",
+        "type": "infantry_company",
+        "name": "Infantry Company 25",
+        "lat": 48.066,
+        "lon": 37.878,
+        "strength": 71,
+        "status": "defensive",
+        "last_seen": "2025-05-03T12:00:00Z",
+        "equipment": [
+          "Mi-8 supply"
+        ],
+        "notes": "Потребує уваги розвідки"
+      },
+      {
+        "id": "EN-126",
+        "type": "ew_team",
+        "name": "EW Team 26",
+        "lat": 48.072,
+        "lon": 37.869,
+        "strength": 119,
+        "status": "moving",
+        "last_seen": "2025-05-03T12:20:00Z",
+        "equipment": [
+          "Krasukha-4"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-127",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 27",
+        "lat": 48.094,
+        "lon": 37.865,
+        "strength": 131,
+        "status": "launching",
+        "last_seen": "2025-05-03T12:40:00Z",
+        "equipment": [
+          "BM-21"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-128",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 28",
+        "lat": 48.1,
+        "lon": 37.877,
+        "strength": 79,
+        "status": "rearming",
+        "last_seen": "2025-05-03T13:00:00Z",
+        "equipment": [
+          "Pantsir-S1"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-129",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 29",
+        "lat": 48.1,
+        "lon": 37.863,
+        "strength": 44,
+        "status": "active",
+        "last_seen": "2025-05-03T13:20:00Z",
+        "equipment": [
+          "T-80BV",
+          "T-72A"
+        ],
+        "notes": "Перекидання резервів з півночі"
+      },
+      {
+        "id": "EN-130",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 30",
+        "lat": 48.112,
+        "lon": 37.878,
+        "strength": 85,
+        "status": "hidden",
+        "last_seen": "2025-05-03T13:40:00Z",
+        "equipment": [
+          "2S3 Akatsiya"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-131",
+        "type": "uav_section",
+        "name": "UAV Section 31",
+        "lat": 48.042,
+        "lon": 37.877,
+        "strength": 81,
+        "status": "firing",
+        "last_seen": "2025-05-03T14:00:00Z",
+        "equipment": [
+          "Orlan-10",
+          "ZALA"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-132",
+        "type": "infantry_company",
+        "name": "Infantry Company 32",
+        "lat": 48.051,
+        "lon": 37.881,
+        "strength": 23,
+        "status": "defensive",
+        "last_seen": "2025-05-03T14:20:00Z",
+        "equipment": [
+          "BMP-2",
+          "MT-LB"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-133",
+        "type": "ew_team",
+        "name": "EW Team 33",
+        "lat": 48.062,
+        "lon": 37.871,
+        "strength": 139,
+        "status": "moving",
+        "last_seen": "2025-05-03T14:40:00Z",
+        "equipment": [
+          "Krasukha-4"
+        ],
+        "notes": "Розгортають додаткові позиції"
+      },
+      {
+        "id": "EN-134",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 34",
+        "lat": 48.071,
+        "lon": 37.889,
+        "strength": 45,
+        "status": "launching",
+        "last_seen": "2025-05-03T15:00:00Z",
+        "equipment": [
+          "Tornado-G"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-135",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 35",
+        "lat": 48.081,
+        "lon": 37.878,
+        "strength": 57,
+        "status": "rearming",
+        "last_seen": "2025-05-03T15:20:00Z",
+        "equipment": [
+          "Pantsir-S1"
+        ],
+        "notes": "Перекидання резервів з півночі"
+      },
+      {
+        "id": "EN-136",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 36",
+        "lat": 48.085,
+        "lon": 37.874,
+        "strength": 82,
+        "status": "active",
+        "last_seen": "2025-05-03T15:40:00Z",
+        "equipment": [
+          "T-64BV"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-137",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 37",
+        "lat": 48.089,
+        "lon": 37.879,
+        "strength": 135,
+        "status": "hidden",
+        "last_seen": "2025-05-03T16:00:00Z",
+        "equipment": [
+          "2S3 Akatsiya"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-138",
+        "type": "uav_section",
+        "name": "UAV Section 38",
+        "lat": 48.087,
+        "lon": 37.871,
+        "strength": 8,
+        "status": "firing",
+        "last_seen": "2025-05-03T16:20:00Z",
+        "equipment": [
+          "Supercam"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-139",
+        "type": "infantry_company",
+        "name": "Infantry Company 39",
+        "lat": 48.093,
+        "lon": 37.874,
+        "strength": 21,
+        "status": "defensive",
+        "last_seen": "2025-05-03T16:40:00Z",
+        "equipment": [
+          "Mi-8 supply"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-140",
+        "type": "ew_team",
+        "name": "EW Team 40",
+        "lat": 48.095,
+        "lon": 37.871,
+        "strength": 11,
+        "status": "moving",
+        "last_seen": "2025-05-03T17:00:00Z",
+        "equipment": [
+          "Leer-3"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-141",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 41",
+        "lat": 48.05,
+        "lon": 37.886,
+        "strength": 127,
+        "status": "launching",
+        "last_seen": "2025-05-03T17:20:00Z",
+        "equipment": [
+          "BM-21"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-142",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 42",
+        "lat": 48.049,
+        "lon": 37.899,
+        "strength": 124,
+        "status": "rearming",
+        "last_seen": "2025-05-03T17:40:00Z",
+        "equipment": [
+          "Tor-M2"
+        ],
+        "notes": "Перекидання резервів з півночі"
+      },
+      {
+        "id": "EN-143",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 43",
+        "lat": 48.061,
+        "lon": 37.888,
+        "strength": 27,
+        "status": "active",
+        "last_seen": "2025-05-03T18:00:00Z",
+        "equipment": [
+          "T-72B3",
+          "T-90M"
+        ],
+        "notes": "Покидають сховища після удару"
+      },
+      {
+        "id": "EN-144",
+        "type": "artillery_battery",
+        "name": "Artillery Battery 44",
+        "lat": 48.067,
+        "lon": 37.888,
+        "strength": 122,
+        "status": "hidden",
+        "last_seen": "2025-05-03T18:20:00Z",
+        "equipment": [
+          "2S7 Pion"
+        ],
+        "notes": "Фіксується збільшення радіообміну"
+      },
+      {
+        "id": "EN-145",
+        "type": "uav_section",
+        "name": "UAV Section 45",
+        "lat": 48.077,
+        "lon": 37.9,
+        "strength": 28,
+        "status": "firing",
+        "last_seen": "2025-05-03T18:40:00Z",
+        "equipment": [
+          "Orlan-10",
+          "ZALA"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      },
+      {
+        "id": "EN-146",
+        "type": "infantry_company",
+        "name": "Infantry Company 46",
+        "lat": 48.085,
+        "lon": 37.896,
+        "strength": 30,
+        "status": "defensive",
+        "last_seen": "2025-05-03T19:00:00Z",
+        "equipment": [
+          "BMP-2",
+          "MT-LB"
+        ],
+        "notes": "Розгортають додаткові позиції"
+      },
+      {
+        "id": "EN-147",
+        "type": "ew_team",
+        "name": "EW Team 47",
+        "lat": 48.08,
+        "lon": 37.889,
+        "strength": 111,
+        "status": "moving",
+        "last_seen": "2025-05-03T19:20:00Z",
+        "equipment": [
+          "Krasukha-4"
+        ],
+        "notes": "Потребує уваги розвідки"
+      },
+      {
+        "id": "EN-148",
+        "type": "mlrs_battery",
+        "name": "MLRS Battery 48",
+        "lat": 48.091,
+        "lon": 37.897,
+        "strength": 22,
+        "status": "launching",
+        "last_seen": "2025-05-03T19:40:00Z",
+        "equipment": [
+          "Tornado-G"
+        ],
+        "notes": "Перекидання резервів з півночі"
+      },
+      {
+        "id": "EN-149",
+        "type": "air_defense_platoon",
+        "name": "Air Defense Platoon 49",
+        "lat": 48.105,
+        "lon": 37.891,
+        "strength": 15,
+        "status": "rearming",
+        "last_seen": "2025-05-03T20:00:00Z",
+        "equipment": [
+          "Pantsir-S1"
+        ],
+        "notes": "Ведуть інженерне обладнання"
+      },
+      {
+        "id": "EN-150",
+        "type": "tank_platoon",
+        "name": "Tank Platoon 50",
+        "lat": 48.111,
+        "lon": 37.899,
+        "strength": 63,
+        "status": "active",
+        "last_seen": "2025-05-03T20:20:00Z",
+        "equipment": [
+          "T-72B3",
+          "T-90M"
+        ],
+        "notes": "Ймовірна підготовка до наступу"
+      }
+    ],
+    "activity_points": [
+      {
+        "lat": 48.049,
+        "lon": 37.821,
+        "activity": 61,
+        "type": "uav_flight",
+        "time": "2025-05-03T04:00:00Z"
+      },
+      {
+        "lat": 48.09,
+        "lon": 37.816,
+        "activity": 10,
+        "type": "artillery_strike",
+        "time": "2025-05-03T04:10:00Z"
+      },
+      {
+        "lat": 48.099,
+        "lon": 37.827,
+        "activity": 68,
+        "type": "movement",
+        "time": "2025-05-03T04:20:00Z"
+      },
+      {
+        "lat": 48.029,
+        "lon": 37.87,
+        "activity": 81,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T04:30:00Z"
+      },
+      {
+        "lat": 48.066,
+        "lon": 37.849,
+        "activity": 34,
+        "type": "ew_activity",
+        "time": "2025-05-03T04:40:00Z"
+      },
+      {
+        "lat": 48.03,
+        "lon": 37.897,
+        "activity": 84,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T04:50:00Z"
+      },
+      {
+        "lat": 48.074,
+        "lon": 37.806,
+        "activity": 50,
+        "type": "uav_flight",
+        "time": "2025-05-03T05:00:00Z"
+      },
+      {
+        "lat": 48.006,
+        "lon": 37.858,
+        "activity": 74,
+        "type": "artillery_strike",
+        "time": "2025-05-03T05:10:00Z"
+      },
+      {
+        "lat": 48.092,
+        "lon": 37.853,
+        "activity": 17,
+        "type": "movement",
+        "time": "2025-05-03T05:20:00Z"
+      },
+      {
+        "lat": 48.096,
+        "lon": 37.808,
+        "activity": 33,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T05:30:00Z"
+      },
+      {
+        "lat": 48.007,
+        "lon": 37.807,
+        "activity": 40,
+        "type": "ew_activity",
+        "time": "2025-05-03T05:40:00Z"
+      },
+      {
+        "lat": 48.04,
+        "lon": 37.894,
+        "activity": 82,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T05:50:00Z"
+      },
+      {
+        "lat": 48.025,
+        "lon": 37.859,
+        "activity": 89,
+        "type": "uav_flight",
+        "time": "2025-05-03T06:00:00Z"
+      },
+      {
+        "lat": 48.008,
+        "lon": 37.866,
+        "activity": 82,
+        "type": "artillery_strike",
+        "time": "2025-05-03T06:10:00Z"
+      },
+      {
+        "lat": 48.052,
+        "lon": 37.893,
+        "activity": 36,
+        "type": "movement",
+        "time": "2025-05-03T06:20:00Z"
+      },
+      {
+        "lat": 48.067,
+        "lon": 37.831,
+        "activity": 43,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T06:30:00Z"
+      },
+      {
+        "lat": 48.04,
+        "lon": 37.867,
+        "activity": 48,
+        "type": "ew_activity",
+        "time": "2025-05-03T06:40:00Z"
+      },
+      {
+        "lat": 48.046,
+        "lon": 37.893,
+        "activity": 19,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T06:50:00Z"
+      },
+      {
+        "lat": 48.001,
+        "lon": 37.862,
+        "activity": 82,
+        "type": "uav_flight",
+        "time": "2025-05-03T07:00:00Z"
+      },
+      {
+        "lat": 48.1,
+        "lon": 37.807,
+        "activity": 37,
+        "type": "artillery_strike",
+        "time": "2025-05-03T07:10:00Z"
+      },
+      {
+        "lat": 48.051,
+        "lon": 37.813,
+        "activity": 54,
+        "type": "movement",
+        "time": "2025-05-03T07:20:00Z"
+      },
+      {
+        "lat": 48.088,
+        "lon": 37.888,
+        "activity": 57,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T07:30:00Z"
+      },
+      {
+        "lat": 48.028,
+        "lon": 37.844,
+        "activity": 79,
+        "type": "ew_activity",
+        "time": "2025-05-03T07:40:00Z"
+      },
+      {
+        "lat": 48.07,
+        "lon": 37.861,
+        "activity": 93,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T07:50:00Z"
+      },
+      {
+        "lat": 48.053,
+        "lon": 37.867,
+        "activity": 80,
+        "type": "uav_flight",
+        "time": "2025-05-03T08:00:00Z"
+      },
+      {
+        "lat": 48.03,
+        "lon": 37.866,
+        "activity": 27,
+        "type": "artillery_strike",
+        "time": "2025-05-03T08:10:00Z"
+      },
+      {
+        "lat": 48.026,
+        "lon": 37.889,
+        "activity": 80,
+        "type": "movement",
+        "time": "2025-05-03T08:20:00Z"
+      },
+      {
+        "lat": 48.016,
+        "lon": 37.828,
+        "activity": 36,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T08:30:00Z"
+      },
+      {
+        "lat": 48.072,
+        "lon": 37.82,
+        "activity": 91,
+        "type": "ew_activity",
+        "time": "2025-05-03T08:40:00Z"
+      },
+      {
+        "lat": 48.085,
+        "lon": 37.851,
+        "activity": 42,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T08:50:00Z"
+      },
+      {
+        "lat": 48.091,
+        "lon": 37.885,
+        "activity": 21,
+        "type": "uav_flight",
+        "time": "2025-05-03T09:00:00Z"
+      },
+      {
+        "lat": 48.063,
+        "lon": 37.883,
+        "activity": 15,
+        "type": "artillery_strike",
+        "time": "2025-05-03T09:10:00Z"
+      },
+      {
+        "lat": 48.0,
+        "lon": 37.877,
+        "activity": 91,
+        "type": "movement",
+        "time": "2025-05-03T09:20:00Z"
+      },
+      {
+        "lat": 48.098,
+        "lon": 37.816,
+        "activity": 66,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T09:30:00Z"
+      },
+      {
+        "lat": 48.055,
+        "lon": 37.843,
+        "activity": 11,
+        "type": "ew_activity",
+        "time": "2025-05-03T09:40:00Z"
+      },
+      {
+        "lat": 48.011,
+        "lon": 37.895,
+        "activity": 98,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T09:50:00Z"
+      },
+      {
+        "lat": 48.09,
+        "lon": 37.855,
+        "activity": 57,
+        "type": "uav_flight",
+        "time": "2025-05-03T10:00:00Z"
+      },
+      {
+        "lat": 48.058,
+        "lon": 37.815,
+        "activity": 26,
+        "type": "artillery_strike",
+        "time": "2025-05-03T10:10:00Z"
+      },
+      {
+        "lat": 48.004,
+        "lon": 37.836,
+        "activity": 15,
+        "type": "movement",
+        "time": "2025-05-03T10:20:00Z"
+      },
+      {
+        "lat": 48.09,
+        "lon": 37.821,
+        "activity": 41,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T10:30:00Z"
+      },
+      {
+        "lat": 48.067,
+        "lon": 37.835,
+        "activity": 81,
+        "type": "ew_activity",
+        "time": "2025-05-03T10:40:00Z"
+      },
+      {
+        "lat": 48.088,
+        "lon": 37.841,
+        "activity": 89,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T10:50:00Z"
+      },
+      {
+        "lat": 48.075,
+        "lon": 37.893,
+        "activity": 40,
+        "type": "uav_flight",
+        "time": "2025-05-03T11:00:00Z"
+      },
+      {
+        "lat": 48.086,
+        "lon": 37.898,
+        "activity": 32,
+        "type": "artillery_strike",
+        "time": "2025-05-03T11:10:00Z"
+      },
+      {
+        "lat": 48.088,
+        "lon": 37.802,
+        "activity": 52,
+        "type": "movement",
+        "time": "2025-05-03T11:20:00Z"
+      },
+      {
+        "lat": 48.078,
+        "lon": 37.841,
+        "activity": 95,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T11:30:00Z"
+      },
+      {
+        "lat": 48.086,
+        "lon": 37.881,
+        "activity": 44,
+        "type": "ew_activity",
+        "time": "2025-05-03T11:40:00Z"
+      },
+      {
+        "lat": 48.016,
+        "lon": 37.87,
+        "activity": 58,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T11:50:00Z"
+      },
+      {
+        "lat": 48.087,
+        "lon": 37.886,
+        "activity": 38,
+        "type": "uav_flight",
+        "time": "2025-05-03T12:00:00Z"
+      },
+      {
+        "lat": 48.02,
+        "lon": 37.892,
+        "activity": 54,
+        "type": "artillery_strike",
+        "time": "2025-05-03T12:10:00Z"
+      },
+      {
+        "lat": 48.031,
+        "lon": 37.88,
+        "activity": 39,
+        "type": "movement",
+        "time": "2025-05-03T12:20:00Z"
+      },
+      {
+        "lat": 48.022,
+        "lon": 37.866,
+        "activity": 61,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T12:30:00Z"
+      },
+      {
+        "lat": 48.033,
+        "lon": 37.886,
+        "activity": 45,
+        "type": "ew_activity",
+        "time": "2025-05-03T12:40:00Z"
+      },
+      {
+        "lat": 48.035,
+        "lon": 37.851,
+        "activity": 96,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T12:50:00Z"
+      },
+      {
+        "lat": 48.098,
+        "lon": 37.854,
+        "activity": 13,
+        "type": "uav_flight",
+        "time": "2025-05-03T13:00:00Z"
+      },
+      {
+        "lat": 48.012,
+        "lon": 37.897,
+        "activity": 32,
+        "type": "artillery_strike",
+        "time": "2025-05-03T13:10:00Z"
+      },
+      {
+        "lat": 48.058,
+        "lon": 37.898,
+        "activity": 14,
+        "type": "movement",
+        "time": "2025-05-03T13:20:00Z"
+      },
+      {
+        "lat": 48.011,
+        "lon": 37.843,
+        "activity": 50,
+        "type": "small_arms_fire",
+        "time": "2025-05-03T13:30:00Z"
+      },
+      {
+        "lat": 48.044,
+        "lon": 37.898,
+        "activity": 24,
+        "type": "ew_activity",
+        "time": "2025-05-03T13:40:00Z"
+      },
+      {
+        "lat": 48.039,
+        "lon": 37.858,
+        "activity": 42,
+        "type": "logistics_convoy",
+        "time": "2025-05-03T13:50:00Z"
+      }
+    ],
+    "routes": [
+      {
+        "unit_id": "EN-101",
+        "path": [
+          {
+            "lat": 48.039,
+            "lon": 37.839,
+            "t": "2025-05-03T04:00:00Z"
+          },
+          {
+            "lat": 48.054,
+            "lon": 37.85,
+            "t": "2025-05-03T05:00:00Z"
+          },
+          {
+            "lat": 48.059,
+            "lon": 37.854,
+            "t": "2025-05-03T06:00:00Z"
+          },
+          {
+            "lat": 48.06,
+            "lon": 37.832,
+            "t": "2025-05-03T07:00:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-102",
+        "path": [
+          {
+            "lat": 48.047,
+            "lon": 37.855,
+            "t": "2025-05-03T04:06:00Z"
+          },
+          {
+            "lat": 48.062,
+            "lon": 37.846,
+            "t": "2025-05-03T05:06:00Z"
+          },
+          {
+            "lat": 48.054,
+            "lon": 37.831,
+            "t": "2025-05-03T06:06:00Z"
+          },
+          {
+            "lat": 48.061,
+            "lon": 37.842,
+            "t": "2025-05-03T07:06:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-103",
+        "path": [
+          {
+            "lat": 48.058,
+            "lon": 37.837,
+            "t": "2025-05-03T04:12:00Z"
+          },
+          {
+            "lat": 48.059,
+            "lon": 37.844,
+            "t": "2025-05-03T05:12:00Z"
+          },
+          {
+            "lat": 48.044,
+            "lon": 37.847,
+            "t": "2025-05-03T06:12:00Z"
+          },
+          {
+            "lat": 48.049,
+            "lon": 37.849,
+            "t": "2025-05-03T07:12:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-104",
+        "path": [
+          {
+            "lat": 48.049,
+            "lon": 37.846,
+            "t": "2025-05-03T04:18:00Z"
+          },
+          {
+            "lat": 48.056,
+            "lon": 37.854,
+            "t": "2025-05-03T05:18:00Z"
+          },
+          {
+            "lat": 48.053,
+            "lon": 37.835,
+            "t": "2025-05-03T06:18:00Z"
+          },
+          {
+            "lat": 48.068,
+            "lon": 37.847,
+            "t": "2025-05-03T07:18:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-105",
+        "path": [
+          {
+            "lat": 48.071,
+            "lon": 37.854,
+            "t": "2025-05-03T04:24:00Z"
+          },
+          {
+            "lat": 48.081,
+            "lon": 37.856,
+            "t": "2025-05-03T05:24:00Z"
+          },
+          {
+            "lat": 48.085,
+            "lon": 37.87,
+            "t": "2025-05-03T06:24:00Z"
+          },
+          {
+            "lat": 48.083,
+            "lon": 37.861,
+            "t": "2025-05-03T07:24:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-106",
+        "path": [
+          {
+            "lat": 48.072,
+            "lon": 37.851,
+            "t": "2025-05-03T04:30:00Z"
+          },
+          {
+            "lat": 48.082,
+            "lon": 37.834,
+            "t": "2025-05-03T05:30:00Z"
+          },
+          {
+            "lat": 48.092,
+            "lon": 37.838,
+            "t": "2025-05-03T06:30:00Z"
+          },
+          {
+            "lat": 48.072,
+            "lon": 37.855,
+            "t": "2025-05-03T07:30:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-107",
+        "path": [
+          {
+            "lat": 48.067,
+            "lon": 37.828,
+            "t": "2025-05-03T04:36:00Z"
+          },
+          {
+            "lat": 48.093,
+            "lon": 37.845,
+            "t": "2025-05-03T05:36:00Z"
+          },
+          {
+            "lat": 48.086,
+            "lon": 37.841,
+            "t": "2025-05-03T06:36:00Z"
+          },
+          {
+            "lat": 48.09,
+            "lon": 37.844,
+            "t": "2025-05-03T07:36:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-108",
+        "path": [
+          {
+            "lat": 48.105,
+            "lon": 37.852,
+            "t": "2025-05-03T04:42:00Z"
+          },
+          {
+            "lat": 48.095,
+            "lon": 37.844,
+            "t": "2025-05-03T05:42:00Z"
+          },
+          {
+            "lat": 48.104,
+            "lon": 37.867,
+            "t": "2025-05-03T06:42:00Z"
+          },
+          {
+            "lat": 48.109,
+            "lon": 37.867,
+            "t": "2025-05-03T07:42:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-109",
+        "path": [
+          {
+            "lat": 48.098,
+            "lon": 37.838,
+            "t": "2025-05-03T04:48:00Z"
+          },
+          {
+            "lat": 48.099,
+            "lon": 37.852,
+            "t": "2025-05-03T05:48:00Z"
+          },
+          {
+            "lat": 48.089,
+            "lon": 37.848,
+            "t": "2025-05-03T06:48:00Z"
+          },
+          {
+            "lat": 48.103,
+            "lon": 37.835,
+            "t": "2025-05-03T07:48:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-110",
+        "path": [
+          {
+            "lat": 48.097,
+            "lon": 37.84,
+            "t": "2025-05-03T04:54:00Z"
+          },
+          {
+            "lat": 48.109,
+            "lon": 37.843,
+            "t": "2025-05-03T05:54:00Z"
+          },
+          {
+            "lat": 48.103,
+            "lon": 37.849,
+            "t": "2025-05-03T06:54:00Z"
+          },
+          {
+            "lat": 48.106,
+            "lon": 37.85,
+            "t": "2025-05-03T07:54:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-111",
+        "path": [
+          {
+            "lat": 48.069,
+            "lon": 37.865,
+            "t": "2025-05-03T05:00:00Z"
+          },
+          {
+            "lat": 48.069,
+            "lon": 37.865,
+            "t": "2025-05-03T06:00:00Z"
+          },
+          {
+            "lat": 48.047,
+            "lon": 37.878,
+            "t": "2025-05-03T07:00:00Z"
+          },
+          {
+            "lat": 48.056,
+            "lon": 37.875,
+            "t": "2025-05-03T08:00:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-112",
+        "path": [
+          {
+            "lat": 48.069,
+            "lon": 37.85,
+            "t": "2025-05-03T05:06:00Z"
+          },
+          {
+            "lat": 48.067,
+            "lon": 37.857,
+            "t": "2025-05-03T06:06:00Z"
+          },
+          {
+            "lat": 48.051,
+            "lon": 37.855,
+            "t": "2025-05-03T07:06:00Z"
+          },
+          {
+            "lat": 48.065,
+            "lon": 37.849,
+            "t": "2025-05-03T08:06:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-113",
+        "path": [
+          {
+            "lat": 48.06,
+            "lon": 37.876,
+            "t": "2025-05-03T05:12:00Z"
+          },
+          {
+            "lat": 48.052,
+            "lon": 37.854,
+            "t": "2025-05-03T06:12:00Z"
+          },
+          {
+            "lat": 48.061,
+            "lon": 37.854,
+            "t": "2025-05-03T07:12:00Z"
+          },
+          {
+            "lat": 48.056,
+            "lon": 37.861,
+            "t": "2025-05-03T08:12:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-114",
+        "path": [
+          {
+            "lat": 48.056,
+            "lon": 37.864,
+            "t": "2025-05-03T05:18:00Z"
+          },
+          {
+            "lat": 48.048,
+            "lon": 37.875,
+            "t": "2025-05-03T06:18:00Z"
+          },
+          {
+            "lat": 48.058,
+            "lon": 37.873,
+            "t": "2025-05-03T07:18:00Z"
+          },
+          {
+            "lat": 48.074,
+            "lon": 37.851,
+            "t": "2025-05-03T08:18:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-115",
+        "path": [
+          {
+            "lat": 48.08,
+            "lon": 37.871,
+            "t": "2025-05-03T05:24:00Z"
+          },
+          {
+            "lat": 48.068,
+            "lon": 37.882,
+            "t": "2025-05-03T06:24:00Z"
+          },
+          {
+            "lat": 48.063,
+            "lon": 37.866,
+            "t": "2025-05-03T07:24:00Z"
+          },
+          {
+            "lat": 48.081,
+            "lon": 37.879,
+            "t": "2025-05-03T08:24:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-116",
+        "path": [
+          {
+            "lat": 48.088,
+            "lon": 37.873,
+            "t": "2025-05-03T05:30:00Z"
+          },
+          {
+            "lat": 48.096,
+            "lon": 37.878,
+            "t": "2025-05-03T06:30:00Z"
+          },
+          {
+            "lat": 48.087,
+            "lon": 37.859,
+            "t": "2025-05-03T07:30:00Z"
+          },
+          {
+            "lat": 48.087,
+            "lon": 37.863,
+            "t": "2025-05-03T08:30:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-117",
+        "path": [
+          {
+            "lat": 48.087,
+            "lon": 37.864,
+            "t": "2025-05-03T05:36:00Z"
+          },
+          {
+            "lat": 48.089,
+            "lon": 37.865,
+            "t": "2025-05-03T06:36:00Z"
+          },
+          {
+            "lat": 48.095,
+            "lon": 37.869,
+            "t": "2025-05-03T07:36:00Z"
+          },
+          {
+            "lat": 48.083,
+            "lon": 37.867,
+            "t": "2025-05-03T08:36:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-118",
+        "path": [
+          {
+            "lat": 48.091,
+            "lon": 37.868,
+            "t": "2025-05-03T05:42:00Z"
+          },
+          {
+            "lat": 48.076,
+            "lon": 37.861,
+            "t": "2025-05-03T06:42:00Z"
+          },
+          {
+            "lat": 48.099,
+            "lon": 37.853,
+            "t": "2025-05-03T07:42:00Z"
+          },
+          {
+            "lat": 48.081,
+            "lon": 37.858,
+            "t": "2025-05-03T08:42:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-119",
+        "path": [
+          {
+            "lat": 48.09,
+            "lon": 37.848,
+            "t": "2025-05-03T05:48:00Z"
+          },
+          {
+            "lat": 48.102,
+            "lon": 37.846,
+            "t": "2025-05-03T06:48:00Z"
+          },
+          {
+            "lat": 48.105,
+            "lon": 37.851,
+            "t": "2025-05-03T07:48:00Z"
+          },
+          {
+            "lat": 48.101,
+            "lon": 37.852,
+            "t": "2025-05-03T08:48:00Z"
+          }
+        ]
+      },
+      {
+        "unit_id": "EN-120",
+        "path": [
+          {
+            "lat": 48.113,
+            "lon": 37.855,
+            "t": "2025-05-03T05:54:00Z"
+          },
+          {
+            "lat": 48.12,
+            "lon": 37.86,
+            "t": "2025-05-03T06:54:00Z"
+          },
+          {
+            "lat": 48.093,
+            "lon": 37.882,
+            "t": "2025-05-03T07:54:00Z"
+          },
+          {
+            "lat": 48.092,
+            "lon": 37.854,
+            "t": "2025-05-03T08:54:00Z"
+          }
+        ]
+      }
+    ],
+    "clusters": [
+      {
+        "label": "Cluster A",
+        "center_lat": 48.035,
+        "center_lon": 37.87,
+        "threat_level": "high",
+        "count": 9,
+        "dominant_type": "artillery_strike"
+      },
+      {
+        "label": "Cluster B",
+        "center_lat": 48.034,
+        "center_lon": 37.848,
+        "threat_level": "medium",
+        "count": 8,
+        "dominant_type": "uav_flight"
+      },
+      {
+        "label": "Cluster C",
+        "center_lat": 48.054,
+        "center_lon": 37.833,
+        "threat_level": "low",
+        "count": 13,
+        "dominant_type": "logistics"
+      },
+      {
+        "label": "Cluster D",
+        "center_lat": 48.066,
+        "center_lon": 37.83,
+        "threat_level": "medium",
+        "count": 8,
+        "dominant_type": "armor"
+      },
+      {
+        "label": "Cluster E",
+        "center_lat": 48.067,
+        "center_lon": 37.83,
+        "threat_level": "high",
+        "count": 14,
+        "dominant_type": "infantry"
+      },
+      {
+        "label": "Cluster F",
+        "center_lat": 48.026,
+        "center_lon": 37.822,
+        "threat_level": "high",
+        "count": 14,
+        "dominant_type": "artillery_strike"
+      },
+      {
+        "label": "Cluster G",
+        "center_lat": 48.055,
+        "center_lon": 37.874,
+        "threat_level": "medium",
+        "count": 17,
+        "dominant_type": "uav_flight"
+      },
+      {
+        "label": "Cluster H",
+        "center_lat": 48.044,
+        "center_lon": 37.863,
+        "threat_level": "low",
+        "count": 7,
+        "dominant_type": "logistics"
+      },
+      {
+        "label": "Cluster I",
+        "center_lat": 48.056,
+        "center_lon": 37.87,
+        "threat_level": "medium",
+        "count": 12,
+        "dominant_type": "armor"
+      },
+      {
+        "label": "Cluster J",
+        "center_lat": 48.026,
+        "center_lon": 37.866,
+        "threat_level": "high",
+        "count": 8,
+        "dominant_type": "infantry"
+      },
+      {
+        "label": "Cluster K",
+        "center_lat": 48.068,
+        "center_lon": 37.854,
+        "threat_level": "high",
+        "count": 6,
+        "dominant_type": "artillery_strike"
+      },
+      {
+        "label": "Cluster L",
+        "center_lat": 48.041,
+        "center_lon": 37.846,
+        "threat_level": "medium",
+        "count": 16,
+        "dominant_type": "uav_flight"
+      },
+      {
+        "label": "Cluster M",
+        "center_lat": 48.024,
+        "center_lon": 37.859,
+        "threat_level": "low",
+        "count": 5,
+        "dominant_type": "logistics"
+      },
+      {
+        "label": "Cluster N",
+        "center_lat": 48.071,
+        "center_lon": 37.869,
+        "threat_level": "medium",
+        "count": 8,
+        "dominant_type": "armor"
+      },
+      {
+        "label": "Cluster O",
+        "center_lat": 48.046,
+        "center_lon": 37.842,
+        "threat_level": "high",
+        "count": 19,
+        "dominant_type": "infantry"
+      },
+      {
+        "label": "Cluster P",
+        "center_lat": 48.062,
+        "center_lon": 37.846,
+        "threat_level": "high",
+        "count": 13,
+        "dominant_type": "artillery_strike"
+      },
+      {
+        "label": "Cluster Q",
+        "center_lat": 48.057,
+        "center_lon": 37.875,
+        "threat_level": "medium",
+        "count": 20,
+        "dominant_type": "uav_flight"
+      },
+      {
+        "label": "Cluster R",
+        "center_lat": 48.048,
+        "center_lon": 37.87,
+        "threat_level": "low",
+        "count": 13,
+        "dominant_type": "logistics"
+      },
+      {
+        "label": "Cluster S",
+        "center_lat": 48.039,
+        "center_lon": 37.835,
+        "threat_level": "medium",
+        "count": 7,
+        "dominant_type": "armor"
+      },
+      {
+        "label": "Cluster T",
+        "center_lat": 48.037,
+        "center_lon": 37.847,
+        "threat_level": "high",
+        "count": 19,
+        "dominant_type": "infantry"
+      }
+    ]
+  },
+  "dailyTrends": [
+    {
+      "date": "2025-02-23",
+      "sorties": 6,
+      "uav": 15,
+      "artillery": 14
+    },
+    {
+      "date": "2025-02-24",
+      "sorties": 5,
+      "uav": 12,
+      "artillery": 4
+    },
+    {
+      "date": "2025-02-25",
+      "sorties": 5,
+      "uav": 12,
+      "artillery": 6
+    },
+    {
+      "date": "2025-02-26",
+      "sorties": 5,
+      "uav": 11,
+      "artillery": 9
+    },
+    {
+      "date": "2025-02-27",
+      "sorties": 8,
+      "uav": 15,
+      "artillery": 9
+    },
+    {
+      "date": "2025-02-28",
+      "sorties": 4,
+      "uav": 13,
+      "artillery": 15
+    },
+    {
+      "date": "2025-03-01",
+      "sorties": 4,
+      "uav": 13,
+      "artillery": 4
+    },
+    {
+      "date": "2025-03-02",
+      "sorties": 6,
+      "uav": 12,
+      "artillery": 5
+    },
+    {
+      "date": "2025-03-03",
+      "sorties": 3,
+      "uav": 13,
+      "artillery": 10
+    },
+    {
+      "date": "2025-03-04",
+      "sorties": 5,
+      "uav": 14,
+      "artillery": 7
+    },
+    {
+      "date": "2025-03-05",
+      "sorties": 7,
+      "uav": 15,
+      "artillery": 14
+    },
+    {
+      "date": "2025-03-06",
+      "sorties": 7,
+      "uav": 15,
+      "artillery": 11
+    },
+    {
+      "date": "2025-03-07",
+      "sorties": 8,
+      "uav": 13,
+      "artillery": 5
+    },
+    {
+      "date": "2025-03-08",
+      "sorties": 4,
+      "uav": 10,
+      "artillery": 10
+    },
+    {
+      "date": "2025-03-09",
+      "sorties": 7,
+      "uav": 13,
+      "artillery": 8
+    },
+    {
+      "date": "2025-03-10",
+      "sorties": 7,
+      "uav": 16,
+      "artillery": 9
+    },
+    {
+      "date": "2025-03-11",
+      "sorties": 5,
+      "uav": 14,
+      "artillery": 12
+    },
+    {
+      "date": "2025-03-12",
+      "sorties": 4,
+      "uav": 12,
+      "artillery": 15
+    },
+    {
+      "date": "2025-03-13",
+      "sorties": 6,
+      "uav": 13,
+      "artillery": 9
+    },
+    {
+      "date": "2025-03-14",
+      "sorties": 7,
+      "uav": 15,
+      "artillery": 8
+    },
+    {
+      "date": "2025-03-15",
+      "sorties": 4,
+      "uav": 11,
+      "artillery": 7
+    },
+    {
+      "date": "2025-03-16",
+      "sorties": 2,
+      "uav": 12,
+      "artillery": 7
+    },
+    {
+      "date": "2025-03-17",
+      "sorties": 4,
+      "uav": 9,
+      "artillery": 15
+    },
+    {
+      "date": "2025-03-18",
+      "sorties": 6,
+      "uav": 16,
+      "artillery": 6
+    },
+    {
+      "date": "2025-03-19",
+      "sorties": 3,
+      "uav": 9,
+      "artillery": 15
+    },
+    {
+      "date": "2025-03-20",
+      "sorties": 5,
+      "uav": 12,
+      "artillery": 15
+    },
+    {
+      "date": "2025-03-21",
+      "sorties": 6,
+      "uav": 15,
+      "artillery": 13
+    },
+    {
+      "date": "2025-03-22",
+      "sorties": 4,
+      "uav": 9,
+      "artillery": 7
+    },
+    {
+      "date": "2025-03-23",
+      "sorties": 4,
+      "uav": 10,
+      "artillery": 9
+    },
+    {
+      "date": "2025-03-24",
+      "sorties": 3,
+      "uav": 10,
+      "artillery": 4
+    },
+    {
+      "date": "2025-03-25",
+      "sorties": 7,
+      "uav": 16,
+      "artillery": 6
+    },
+    {
+      "date": "2025-03-26",
+      "sorties": 4,
+      "uav": 9,
+      "artillery": 4
+    },
+    {
+      "date": "2025-03-27",
+      "sorties": 6,
+      "uav": 13,
+      "artillery": 15
+    },
+    {
+      "date": "2025-03-28",
+      "sorties": 3,
+      "uav": 13,
+      "artillery": 11
+    },
+    {
+      "date": "2025-03-29",
+      "sorties": 2,
+      "uav": 7,
+      "artillery": 13
+    },
+    {
+      "date": "2025-03-30",
+      "sorties": 4,
+      "uav": 12,
+      "artillery": 11
+    },
+    {
+      "date": "2025-03-31",
+      "sorties": 5,
+      "uav": 12,
+      "artillery": 6
+    },
+    {
+      "date": "2025-04-01",
+      "sorties": 2,
+      "uav": 9,
+      "artillery": 11
+    },
+    {
+      "date": "2025-04-02",
+      "sorties": 2,
+      "uav": 7,
+      "artillery": 10
+    },
+    {
+      "date": "2025-04-03",
+      "sorties": 5,
+      "uav": 10,
+      "artillery": 13
+    },
+    {
+      "date": "2025-04-04",
+      "sorties": 7,
+      "uav": 17,
+      "artillery": 4
+    },
+    {
+      "date": "2025-04-05",
+      "sorties": 3,
+      "uav": 9,
+      "artillery": 13
+    },
+    {
+      "date": "2025-04-06",
+      "sorties": 4,
+      "uav": 9,
+      "artillery": 7
+    },
+    {
+      "date": "2025-04-07",
+      "sorties": 2,
+      "uav": 11,
+      "artillery": 10
+    },
+    {
+      "date": "2025-04-08",
+      "sorties": 6,
+      "uav": 15,
+      "artillery": 13
+    },
+    {
+      "date": "2025-04-09",
+      "sorties": 3,
+      "uav": 12,
+      "artillery": 10
+    },
+    {
+      "date": "2025-04-10",
+      "sorties": 5,
+      "uav": 13,
+      "artillery": 8
+    },
+    {
+      "date": "2025-04-11",
+      "sorties": 8,
+      "uav": 17,
+      "artillery": 10
+    },
+    {
+      "date": "2025-04-12",
+      "sorties": 4,
+      "uav": 13,
+      "artillery": 13
+    },
+    {
+      "date": "2025-04-13",
+      "sorties": 2,
+      "uav": 11,
+      "artillery": 15
+    },
+    {
+      "date": "2025-04-14",
+      "sorties": 2,
+      "uav": 8,
+      "artillery": 14
+    },
+    {
+      "date": "2025-04-15",
+      "sorties": 3,
+      "uav": 10,
+      "artillery": 14
+    },
+    {
+      "date": "2025-04-16",
+      "sorties": 2,
+      "uav": 8,
+      "artillery": 7
+    },
+    {
+      "date": "2025-04-17",
+      "sorties": 3,
+      "uav": 12,
+      "artillery": 5
+    },
+    {
+      "date": "2025-04-18",
+      "sorties": 3,
+      "uav": 8,
+      "artillery": 10
+    },
+    {
+      "date": "2025-04-19",
+      "sorties": 5,
+      "uav": 15,
+      "artillery": 13
+    },
+    {
+      "date": "2025-04-20",
+      "sorties": 5,
+      "uav": 12,
+      "artillery": 4
+    },
+    {
+      "date": "2025-04-21",
+      "sorties": 3,
+      "uav": 10,
+      "artillery": 15
+    },
+    {
+      "date": "2025-04-22",
+      "sorties": 4,
+      "uav": 14,
+      "artillery": 11
+    },
+    {
+      "date": "2025-04-23",
+      "sorties": 2,
+      "uav": 12,
+      "artillery": 7
+    },
+    {
+      "date": "2025-04-24",
+      "sorties": 4,
+      "uav": 14,
+      "artillery": 13
+    },
+    {
+      "date": "2025-04-25",
+      "sorties": 7,
+      "uav": 13,
+      "artillery": 10
+    },
+    {
+      "date": "2025-04-26",
+      "sorties": 2,
+      "uav": 11,
+      "artillery": 7
+    },
+    {
+      "date": "2025-04-27",
+      "sorties": 7,
+      "uav": 13,
+      "artillery": 8
+    },
+    {
+      "date": "2025-04-28",
+      "sorties": 8,
+      "uav": 14,
+      "artillery": 5
+    },
+    {
+      "date": "2025-04-29",
+      "sorties": 2,
+      "uav": 8,
+      "artillery": 8
+    },
+    {
+      "date": "2025-04-30",
+      "sorties": 6,
+      "uav": 16,
+      "artillery": 13
+    },
+    {
+      "date": "2025-05-01",
+      "sorties": 4,
+      "uav": 12,
+      "artillery": 5
+    },
+    {
+      "date": "2025-05-02",
+      "sorties": 5,
+      "uav": 15,
+      "artillery": 8
+    },
+    {
+      "date": "2025-05-03",
+      "sorties": 7,
+      "uav": 15,
+      "artillery": 8
+    }
+  ],
+  "threatAssessment": {
+    "sectors": [
+      {
+        "sector": "10",
+        "threat_level": "low",
+        "reason": "Висока щільність артилерії"
+      },
+      {
+        "sector": "11",
+        "threat_level": "medium",
+        "reason": "Активні польоти UAV"
+      },
+      {
+        "sector": "12",
+        "threat_level": "high",
+        "reason": "Переміщення бронетехніки"
+      },
+      {
+        "sector": "13",
+        "threat_level": "critical",
+        "reason": "Зафіксовано EW пригнічення"
+      },
+      {
+        "sector": "14",
+        "threat_level": "low",
+        "reason": "Перекидання резервів"
+      },
+      {
+        "sector": "15",
+        "threat_level": "medium",
+        "reason": "Зосередження піхоти"
+      },
+      {
+        "sector": "16",
+        "threat_level": "high",
+        "reason": "Створення фортифікацій"
+      },
+      {
+        "sector": "17",
+        "threat_level": "critical",
+        "reason": "Логістичні колони"
+      },
+      {
+        "sector": "18",
+        "threat_level": "low",
+        "reason": "Висока щільність артилерії"
+      },
+      {
+        "sector": "19",
+        "threat_level": "medium",
+        "reason": "Активні польоти UAV"
+      },
+      {
+        "sector": "20",
+        "threat_level": "high",
+        "reason": "Переміщення бронетехніки"
+      },
+      {
+        "sector": "21",
+        "threat_level": "critical",
+        "reason": "Зафіксовано EW пригнічення"
+      },
+      {
+        "sector": "22",
+        "threat_level": "low",
+        "reason": "Перекидання резервів"
+      },
+      {
+        "sector": "23",
+        "threat_level": "medium",
+        "reason": "Зосередження піхоти"
+      },
+      {
+        "sector": "24",
+        "threat_level": "high",
+        "reason": "Створення фортифікацій"
+      },
+      {
+        "sector": "25",
+        "threat_level": "critical",
+        "reason": "Логістичні колони"
+      },
+      {
+        "sector": "26",
+        "threat_level": "low",
+        "reason": "Висока щільність артилерії"
+      },
+      {
+        "sector": "27",
+        "threat_level": "medium",
+        "reason": "Активні польоти UAV"
+      },
+      {
+        "sector": "28",
+        "threat_level": "high",
+        "reason": "Переміщення бронетехніки"
+      },
+      {
+        "sector": "29",
+        "threat_level": "critical",
+        "reason": "Зафіксовано EW пригнічення"
+      },
+      {
+        "sector": "30",
+        "threat_level": "low",
+        "reason": "Перекидання резервів"
+      },
+      {
+        "sector": "31",
+        "threat_level": "medium",
+        "reason": "Зосередження піхоти"
+      },
+      {
+        "sector": "32",
+        "threat_level": "high",
+        "reason": "Створення фортифікацій"
+      },
+      {
+        "sector": "33",
+        "threat_level": "critical",
+        "reason": "Логістичні колони"
+      },
+      {
+        "sector": "34",
+        "threat_level": "low",
+        "reason": "Висока щільність артилерії"
+      },
+      {
+        "sector": "35",
+        "threat_level": "medium",
+        "reason": "Активні польоти UAV"
+      },
+      {
+        "sector": "36",
+        "threat_level": "high",
+        "reason": "Переміщення бронетехніки"
+      },
+      {
+        "sector": "37",
+        "threat_level": "critical",
+        "reason": "Зафіксовано EW пригнічення"
+      },
+      {
+        "sector": "38",
+        "threat_level": "low",
+        "reason": "Перекидання резервів"
+      },
+      {
+        "sector": "39",
+        "threat_level": "medium",
+        "reason": "Зосередження піхоти"
+      },
+      {
+        "sector": "40",
+        "threat_level": "high",
+        "reason": "Створення фортифікацій"
+      },
+      {
+        "sector": "41",
+        "threat_level": "critical",
+        "reason": "Логістичні колони"
+      },
+      {
+        "sector": "42",
+        "threat_level": "low",
+        "reason": "Висока щільність артилерії"
+      },
+      {
+        "sector": "43",
+        "threat_level": "medium",
+        "reason": "Активні польоти UAV"
+      },
+      {
+        "sector": "44",
+        "threat_level": "high",
+        "reason": "Переміщення бронетехніки"
+      },
+      {
+        "sector": "45",
+        "threat_level": "critical",
+        "reason": "Зафіксовано EW пригнічення"
+      },
+      {
+        "sector": "46",
+        "threat_level": "low",
+        "reason": "Перекидання резервів"
+      },
+      {
+        "sector": "47",
+        "threat_level": "medium",
+        "reason": "Зосередження піхоти"
+      },
+      {
+        "sector": "48",
+        "threat_level": "high",
+        "reason": "Створення фортифікацій"
+      },
+      {
+        "sector": "49",
+        "threat_level": "critical",
+        "reason": "Логістичні колони"
+      }
+    ]
+  },
+  "notes": [
+    "Загальна кількість противника зросла на 12% порівняно з минулим тижнем",
+    "Ворожі танкові підрозділи роблять маневри під прикриттям UAV",
+    "Спостерігається стабільний ріст застосування EW проти дронів",
+    "Декілька артилерійських батарей змінили позиції після ударів",
+    "Триває будівництво нових бліндажів у секторі 18",
+    "Резерви піхоти перекидають залізницею в сектор 25",
+    "Зростає кількість логістичних колон у нічний час",
+    "Фіксуємо активність груп БПЛА-камікадзе",
+    "Противник тестує нові маршрути постачання через балки",
+    "Командування противника переходить на закриті канали зв'язку",
+    "У секторі 32 облаштовано новий EW-вузол",
+    "Відзначено нестачу ППО на південному напрямку",
+    "Декілька підрозділів змінили камуфляж",
+    "Збільшено кількість спостережних постів",
+    "Зафіксовано підготовку польових госпіталів",
+    "Супротивник проводить тренування з нічного штурму",
+    "Підвищена активність саперних груп",
+    "Є ознаки ротації офіцерського складу",
+    "Підрозділи БПЛА потребують поповнення акумуляторів",
+    "Зенітні засоби перекидають ближче до фронту",
+    "Системи РЕБ намагаються придушити мобільний зв'язок",
+    "Артилерія противника коригується БПЛА тривалого перебування",
+    "Мінометні розрахунки розгортаються ближче до населених пунктів",
+    "Командири на місцях просять додаткові засоби маскування",
+    "Завезено нові партії ПТКР",
+    "Активізувалася робота снайперських пар",
+    "Спостерігаємо посилену охорону штабів",
+    "Ворог тестує короткі радіоефіри для уникнення РЕР",
+    "Маршрути постачання дублюються ґрунтовими дорогами",
+    "Виникли перебої з пальним у секторі 27"
+  ]
+}
