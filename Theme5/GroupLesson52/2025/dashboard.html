@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Дашборд бойового складу</title>
+    <style>
+        :root {
+            font-family: "Segoe UI", "Arial", system-ui, sans-serif;
+            color-scheme: light dark;
+            --bg: #0f172a;
+            --panel: #16223a;
+            --accent: #38bdf8;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --danger: #f87171;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: radial-gradient(circle at top, #1e293b, #0f172a 60%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+        .dashboard {
+            width: min(1100px, 100%);
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(2, 6, 23, 0.6);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: var(--panel);
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+        .card h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+        .value {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        .trend {
+            margin-top: 6px;
+            font-size: 0.9rem;
+        }
+        .trend.up { color: var(--success); }
+        .trend.down { color: var(--danger); }
+        .trend.warn { color: var(--warning); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        th, td {
+            text-align: left;
+            padding: 14px 12px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        th {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        td strong { color: var(--text); }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .badge-ready { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+        .badge-alert { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+        .badge-rotation { background: rgba(251, 191, 36, 0.15); color: var(--warning); }
+    </style>
+</head>
+<body>
+    <main class="dashboard">
+        <div class="header">
+            <div>
+                <h1>Штабний дашборд • Бойовий чисельний склад</h1>
+                <p>Оновлено: 14 листопада 2025, 09:25</p>
+            </div>
+            <span class="status-pill">
+                ● Статус: Stabilized
+            </span>
+        </div>
+
+        <section class="grid">
+            <article class="card">
+                <h2>Загальна чисельність</h2>
+                <div class="value">1 248</div>
+                <div class="trend up">+32 за 24 год</div>
+            </article>
+            <article class="card">
+                <h2>Боєготові</h2>
+                <div class="value">1 012</div>
+                <div class="trend up">+1.8% готовність</div>
+            </article>
+            <article class="card">
+                <h2>На ротації</h2>
+                <div class="value">156</div>
+                <div class="trend warn">Очікується повернення 18.11</div>
+            </article>
+            <article class="card">
+                <h2>Втрати / вибуття</h2>
+                <div class="value">80</div>
+                <div class="trend down">-4 за 72 год</div>
+            </article>
+        </section>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Підрозділ</th>
+                    <th>Локація</th>
+                    <th>Особовий склад</th>
+                    <th>Статус</th>
+                    <th>Командир</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1-а мех. рота</strong></td>
+                    <td>Сектор «Північ»</td>
+                    <td>180 / 200</td>
+                    <td><span class="badge badge-ready">Боєготові</span></td>
+                    <td>к-н Коваленко</td>
+                </tr>
+                <tr>
+                    <td><strong>3-й батальйон</strong></td>
+                    <td>Лінія «Схід»</td>
+                    <td>412 / 450</td>
+                    <td><span class="badge badge-alert">Підсилення</span></td>
+                    <td>пп-к Кравець</td>
+                </tr>
+                <tr>
+                    <td><strong>Резерв HQ</strong></td>
+                    <td>База «Дніпро»</td>
+                    <td>280 / 320</td>
+                    <td><span class="badge badge-ready">Очікують наказу</span></td>
+                    <td>м-р Сидоренко</td>
+                </tr>
+                <tr>
+                    <td><strong>Рота БПЛА</strong></td>
+                    <td>Сектор «Південь»</td>
+                    <td>90 / 100</td>
+                    <td><span class="badge badge-rotation">Ротація</span></td>
+                    <td>к-н Марченко</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
