@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Основи графічного дизайну для візуалізації даних — навчальний модуль</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <aside class="side-nav" aria-label="Прогрес модулів">
+      <h4>Модулі</h4>
+      <div id="moduleNav" class="module-nav"></div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Прогрес</span><span id="progressValue">0%</span></div>
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+      <div class="glossary">
+        <h5>Глосарій</h5>
+        <ul id="glossaryList"></ul>
+      </div>
+    </aside>
+
+    <main>
+      <section class="module" id="module0" data-module="0">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Старт</p>
+            <h1>Основи графічного дизайну та його використання для візуалізації даних</h1>
+            <p class="lede">Чому дизайн = читабельність: ті самі дані можуть або допомагати ухвалювати рішення, або створювати шум.</p>
+            <button class="primary" data-action="start">Почати навчання</button>
+          </div>
+          <div class="banner">
+            <div class="panel bad">
+              <p class="label">Погана панель</p>
+              <div class="fake-chart dense"></div>
+              <small>Шум, дрібний текст, забагато кольорів.</small>
+            </div>
+            <div class="panel good">
+              <p class="label">Добра панель</p>
+              <div class="fake-chart clean"></div>
+              <small>Акценти, читабельні підписи, логічна ієрархія.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" id="module1" data-module="1">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 1</p>
+          <h2>Що таке графічний дизайн і чому він важливий для даних</h2>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <p class="label">Визначення</p>
+            <p>Графічний дизайн — це спосіб організувати візуальну інформацію так, щоб її було легко сприймати, порівнювати та діяти на її основі.</p>
+            <ul class="bullets">
+              <li>Прискорює сприйняття.</li>
+              <li>Підсвічує головне.</li>
+              <li>Зменшує помилкові інтерпретації.</li>
+            </ul>
+            <div class="myths">
+              <h4>Міфи про дизайн</h4>
+              <ul>
+                <li>«Це лише про красу, не про зміст»</li>
+                <li>«Достатньо знати інструмент — принципи не потрібні»</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <p class="label">Opener-квіз</p>
+            <div id="openerQuiz" class="quiz"></div>
+            <button class="ghost" id="checkOpener">Перевірити</button>
+            <p id="openerResult" class="quiz-result"></p>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="slide bad"><p class="label">Таблиця</p></div>
+          <div class="slide mid"><p class="label">Базовий графік</p></div>
+          <div class="slide good"><p class="label">Покращений графік</p></div>
+        </div>
+      </section>
+
+      <section class="module" id="module2" data-module="2">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 2</p>
+          <h2>Базові принципи графічного дизайну</h2>
+        </div>
+        <div class="principles" id="principleGrid"></div>
+        <div class="card mini-test">
+          <p class="label">Міні-тест</p>
+          <p>На якому варіанті краще реалізовано контраст?</p>
+          <div class="options" id="contrastOptions"></div>
+          <button class="primary" id="checkContrast">Перевірити</button>
+          <p id="contrastResult" class="quiz-result"></p>
+        </div>
+      </section>
+
+      <section class="module" id="module3" data-module="3">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 3</p>
+          <h2>Класи візуальних елементів</h2>
+        </div>
+        <p>Наведіть на тип, щоб побачити пояснення.</p>
+        <div class="mindmap" id="mindmap"></div>
+      </section>
+
+      <section class="module" id="module4" data-module="4">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 4</p>
+          <h2>Як обирати візуалізацію під тип даних</h2>
+        </div>
+        <div class="data-table">
+          <div class="row head">
+            <div>Тип даних</div>
+            <div>Рекомендовані візуалізації</div>
+            <div>Чого уникати</div>
+          </div>
+          <div class="row">
+            <div>Категоріальні</div>
+            <div>Стовпчикові, горизонтальні бари</div>
+            <div>Секторні діаграми з 10+ сегментами</div>
+          </div>
+          <div class="row">
+            <div>Часові</div>
+            <div>Лінія, area, спарклайни</div>
+            <div>Секторні діаграми для трендів</div>
+          </div>
+          <div class="row">
+            <div>Просторові</div>
+            <div>Карта з точками/heatmap, маршрути</div>
+            <div>Без легенди, забагато відтінків</div>
+          </div>
+        </div>
+        <div class="dragdrop">
+          <div class="column">
+            <h4>Ситуації</h4>
+            <div id="scenarios" class="cards"></div>
+          </div>
+          <div class="column">
+            <h4>Візуалізації</h4>
+            <div id="visuals" class="cards visuals"></div>
+          </div>
+          <div class="column dropzone">
+            <h4>Перетягніть сюди</h4>
+            <div id="dropzones" class="cards dropzones"></div>
+          </div>
+        </div>
+        <p id="dragResult" class="quiz-result"></p>
+      </section>
+
+      <section class="module" id="module5" data-module="5">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 5</p>
+          <h2>Аналіз прикладів дашбордів</h2>
+        </div>
+        <p id="issueCounter" class="muted">Знайдіть 3 проблеми у «До», клікнувши по маркерах.</p>
+        <div class="dashboard-find">
+          <div class="dash bad" id="badDash">
+            <p class="label">Знайдіть 3 проблеми</p>
+            <div class="dash-layout bad-layout">
+              <div class="card-block noisy"></div>
+              <div class="card-block noisy small"></div>
+              <div class="card-block noisy small"></div>
+              <div class="chart-block noisy"></div>
+            </div>
+            <div class="hotspot" data-issue="Колір шумить" style="top:20%;left:30%;"></div>
+            <div class="hotspot" data-issue="Дрібний шрифт" style="top:55%;left:60%;"></div>
+            <div class="hotspot" data-issue="Немає ієрархії" style="top:75%;left:40%;"></div>
+          </div>
+          <div class="dash good" id="goodDash" aria-live="polite">
+            <p class="label">Після</p>
+            <div class="dash-layout good-layout">
+              <div class="card-block clean"></div>
+              <div class="card-block clean small"></div>
+              <div class="card-block clean small"></div>
+              <div class="chart-block clean"></div>
+            </div>
+            <ul id="fixList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" id="module6" data-module="6">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 6</p>
+          <h2>Міні-практикум: спроєктуй візуалізацію</h2>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <label class="label">Оберіть тип даних</label>
+            <select id="dataType">
+              <option value="time">Часова динаміка</option>
+              <option value="categorical">Категоріальні дані</option>
+              <option value="spatial">Просторові дані</option>
+            </select>
+            <label class="label">Що підсвітити</label>
+            <select id="accentFocus">
+              <option value="trend">Тренд/піки</option>
+              <option value="top">Топ/антитоп</option>
+              <option value="risk">Ризик/аномалія</option>
+            </select>
+            <button class="primary" id="buildMockup">Зібрати макет</button>
+          </div>
+          <div class="card" id="mockupResult">
+            <p class="label">Шаблонний макет</p>
+            <p>Оберіть параметри, щоб побачити рекомендацію.</p>
+          </div>
+        </div>
+        <div class="card checklist">
+          <h4>Чек-лист</h4>
+          <ul>
+            <li><input type="checkbox"> Контраст достатній (фон/текст).</li>
+            <li><input type="checkbox"> Є заголовок-дія та підписані одиниці.</li>
+            <li><input type="checkbox"> Легенда проста, не дублює очевидне.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="module" id="module7" data-module="7">
+        <div class="section-head">
+          <p class="eyebrow">Модуль 7</p>
+          <h2>Підсумок та самоперевірка</h2>
+        </div>
+        <div class="card">
+          <h4>Запам'ятай головне</h4>
+          <ul class="bullets">
+            <li>Дизайн = структура + ієрархія + акценти.</li>
+            <li>Тип даних → тип графіка, без універсальних «кругових» рішень.</li>
+            <li>Менше шуму: обмежена палітра, читабельна типографіка.</li>
+            <li>Тестуйте на доступність (контраст, підписи, фокус).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="label">Тест 6 питань</p>
+          <div id="finalQuiz" class="quiz"></div>
+          <button class="primary" id="checkFinal">Перевірити</button>
+          <p id="finalResult" class="quiz-result"></p>
+        </div>
+        <div class="card">
+          <p class="label">Чек-лист PDF</p>
+          <p>Завантажте або роздрукуйте шаблон: <a href="#" aria-disabled="true">Чек-лист дизайну (макет)</a></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

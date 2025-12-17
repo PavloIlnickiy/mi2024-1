@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Висновки · Тема 5. Заняття 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="logo">Тема 5 · Заняття 4 — Підбір візуальних елементів</div>
+    <nav>
+      <a href="index.html">Вступ</a>
+      <a href="question1.html">Питання 1 · Класифікація</a>
+      <a href="question2.html">Питання 2 · Підбір</a>
+      <a href="tools.html">Інструменти</a>
+      <a href="conclusions.html" class="active">Висновки</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero-block">
+      <div>
+        <p class="eyebrow">Фінал</p>
+        <h1>Підсумки та самоперевірка</h1>
+        <p class="muted">Швидкий чекліст, міні-порівняння та нагадування про типові ризики.</p>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <p class="eyebrow">Чекліст готовності</p>
+        <h3>Пройдіть пункти</h3>
+        <div class="checklist" id="checklist">
+          <button class="check-item" data-check="question">Ясно сформульовано запитання (що, де, коли).</button>
+          <button class="check-item" data-check="scale">Узгоджено шкали/одиниці між графіками.</button>
+          <button class="check-item" data-check="color">Підібрано кольори з урахуванням контрасту та кольоросприйняття.</button>
+          <button class="check-item" data-check="legend">Легенда/пояснення не дублює візуалізацію, а доповнює.</button>
+          <button class="check-item" data-check="simplicity">Прибрано зайві ефекти: 3D, тіні, об’єми.</button>
+          <button class="check-item" data-check="access">Додано прямі підписи для ключових точок.</button>
+        </div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Рішення за запитанням</p>
+        <h3>Міні-нагадування</h3>
+        <ul class="list">
+          <li><strong>Порівняння:</strong> стовпчики/груповані бари; уникати секторів з 7+ категорій.</li>
+          <li><strong>Динаміка:</strong> лінії/area; уникати колонок із дрібним кроком.</li>
+          <li><strong>Структура:</strong> кільце/treemap; уникати 3D-пирогів.</li>
+          <li><strong>Розподіл:</strong> boxplot/violin/heatmap; уникати лише середніх значень.</li>
+          <li><strong>Простір:</strong> маркери/хлороплет; уникати багатошарових прозоростей без легенди.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Мікропрактика</p>
+          <h2>Відчуйте різницю</h2>
+          <p class="muted">Порівняння: щільна динаміка проти грубої агрегації.</p>
+        </div>
+        <button class="btn ghost" id="refreshMini">Оновити дані</button>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <p class="eyebrow success">Детальна динаміка</p>
+          <div class="chart-wrap small"><canvas id="miniGood"></canvas></div>
+        </div>
+        <div class="card">
+          <p class="eyebrow warn">Занадто агрегацій</p>
+          <div class="chart-wrap small"><canvas id="miniBad"></canvas></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Питання 2 · Основи підбору</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="logo">Тема 5 · Заняття 4 — Підбір візуальних елементів</div>
+    <nav>
+      <a href="index.html">Вступ</a>
+      <a href="question1.html">Питання 1 · Класифікація</a>
+      <a href="question2.html" class="active">Питання 2 · Підбір</a>
+      <a href="tools.html">Інструменти</a>
+      <a href="conclusions.html">Висновки</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero-block">
+      <div>
+        <p class="eyebrow">Питання 2</p>
+        <h1>Основи підбору візуальних елементів</h1>
+        <p class="muted">Формулюємо питання → підбираємо форму. Додаємо приклади «вдалого» і «невдалого» вибору, карти, кореляції й small multiples.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#examples2">Перейти до прикладів</a>
+          <button class="btn ghost" id="refreshCharts2">Оновити дані</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div>
+        <p class="eyebrow">Принципи</p>
+        <h2>Як підбирати</h2>
+        <p class="muted">1) Сформулюйте запитання. 2) Визначте тип: порівняння, динаміка, структура, розподіл, простір. 3) Оберіть форму, що мінімізує когнітивне навантаження й зберігає контекст.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Додатково</p>
+          <h2>Кольори та деталізація</h2>
+          <p class="muted">Перемикайте палітри, щоб бачити, як змінюється читабельність.</p>
+        </div>
+        <div class="segmented">
+          <button class="segmented-btn active" data-mode="good" id="paletteGood">Збалансовано</button>
+          <button class="segmented-btn" data-mode="bad" id="paletteBad">Перевантажено</button>
+        </div>
+      </div>
+      <div id="paletteBars" class="palette-bars"></div>
+      <p class="muted note">Збалансований режим: 4–5 кольорів, прямі підписи. Перевантажений: 10+ кольорів, низький контраст.</p>
+    </section>
+
+    <section class="panel design-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Дизайн елементів</p>
+          <h2>Правильно vs неправильно</h2>
+          <p class="muted">Шрифти, розміри, відступи та структура в окремих блоках із жорстким контрастом.</p>
+        </div>
+        <div class="segmented">
+          <button class="segmented-btn active" id="designBalanced">Правильно</button>
+          <button class="segmented-btn" id="designOver">Неправильно</button>
+        </div>
+      </div>
+      <div class="design-grid">
+        <div class="design-card">
+          <h3>Шрифти</h3>
+          <p class="muted">Чітка типографіка допомагає зчитуванню метрик.</p>
+          <div class="design-variants">
+            <div class="variant good" data-variant="good">
+              <div class="label">Правильно</div>
+              <div class="sample">
+                <div style="font-size:32px; font-weight:700;">Заголовок 32px</div>
+                <div style="font-size:17px; line-height:1.6;">Текст 17px · читабельний інтерліньяж і контраст кегля.</div>
+              </div>
+              <div class="chips"><span class="pill small">Контраст кегля</span><span class="pill small">Без зайвого кернування</span></div>
+            </div>
+            <div class="variant bad" data-variant="bad">
+              <div class="label">Неправильно</div>
+              <div class="sample" style="font-family:'Caveat', cursive; font-size:15px; letter-spacing:0.08em; line-height:1.2;">
+                Усі написи майже одного розміру, рукописний шрифт і зайве кернування — читати важко.
+              </div>
+              <div class="chips"><span class="pill small">Дрібний текст</span><span class="pill small">Немає контрасту</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="design-card">
+          <h3>Відступи</h3>
+          <p class="muted">Простір між елементами формує ритм.</p>
+          <div class="design-variants">
+            <div class="variant good" data-variant="good">
+              <div class="label">Правильно</div>
+              <div class="sample">Поля 14–18px усередині карток, достатній міжрядковий інтервал, читабельні блоки.</div>
+              <div class="padding-demo good">
+                <div>Блок з комфортним padding (16px)</div>
+              </div>
+              <div class="chips"><span class="pill small">Padding 14–18px</span><span class="pill small">Міжрядковий 1.5</span></div>
+            </div>
+            <div class="variant bad" data-variant="bad">
+              <div class="label">Неправильно</div>
+              <div class="sample">Занадто щільно: текст зливається, блоки торкаються один одного, немає візуальних пауз.</div>
+              <div class="padding-demo bad">
+                <div>Padding 1px · все злипається</div>
+              </div>
+              <div class="chips"><span class="pill small">Мало відступів</span><span class="pill small">Злипання блоків</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="design-card">
+          <h3>Ієрархія</h3>
+          <p class="muted">Рівні заголовків і підзаголовків мають бути очевидні.</p>
+          <div class="design-variants">
+            <div class="variant good" data-variant="good">
+              <div class="label">Правильно</div>
+              <div class="sample">
+                <div style="font-size:32px; font-weight:700;">H1 · 32px акцент</div>
+                <div style="font-size:22px; font-weight:600; color: var(--muted);">H2 · 22px допоміжний</div>
+                <div style="font-size:17px; line-height:1.6;">Текст 17px · читабельний інтерліньяж, другорядні елементи світліші.</div>
+              </div>
+              <div class="chips"><span class="pill small">3 рівні</span><span class="pill small">Контраст кольору</span></div>
+            </div>
+            <div class="variant bad" data-variant="bad">
+              <div class="label">Неправильно</div>
+              <div class="sample">
+                <div style="font-size:15px; font-weight:500; color:#fca5a5;">H1 майже як текст</div>
+                <div style="font-size:15px; font-weight:500; color:#fca5a5;">H2 без контрасту</div>
+                <div style="font-size:14px; font-weight:500; color:#fca5a5;">Текст 14px, той самий колір і вага — фокус зникає.</div>
+              </div>
+              <div class="chips"><span class="pill small">Плоска шкала</span><span class="pill small">Немає фокусу</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="design-card structure-wide">
+          <h3>Структура</h3>
+          <p class="muted">Сітка і групування елементів допомагають сприйняттю.</p>
+          <div class="segmented" style="margin-top:4px;">
+            <button class="segmented-btn active" id="structureGood">Правильно</button>
+            <button class="segmented-btn" id="structureBad">Неправильно</button>
+          </div>
+          <div class="design-variants">
+            <div class="variant good" data-variant="good" data-group="structure">
+              <div class="label">Правильно</div>
+              <div class="sample">2–3 колонки з чіткими відступами. Блоки вирівняні, легко сканувати.</div>
+              <div class="structure-preview good">
+                <div class="row">
+                  <div class="box">A</div><div class="box">B</div><div class="box">C</div>
+                </div>
+                <div class="row">
+                  <div class="box wide">D (довгий блок)</div>
+                </div>
+              </div>
+              <div class="chips"><span class="pill small">2–3 колонки</span><span class="pill small">Вирівнювання</span></div>
+            </div>
+            <div class="variant bad" data-variant="bad" data-group="structure">
+              <div class="label">Неправильно</div>
+              <div class="sample">4+ щільних колонок без відступів — усе дрібне, візуальна ієрархія губиться.</div>
+              <div class="structure-preview bad">
+                <div class="row">
+                  <div class="box tiny">A</div><div class="box tiny">B</div><div class="box tiny">C</div><div class="box tiny">D</div>
+                </div>
+                <div class="row">
+                  <div class="box tiny">E</div><div class="box tiny">F</div><div class="box tiny">G</div><div class="box tiny">H</div>
+                </div>
+              </div>
+              <div class="chips"><span class="pill small">4+ колонок</span><span class="pill small">Занадто щільно</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Алгоритм підбору</p>
+          <h2>Крок за кроком</h2>
+          <p class="muted">Натискайте етапи ліворуч — справа змінюється дизайн за кроками алгоритму.</p>
+        </div>
+      </div>
+      <div class="algo">
+        <div class="algo-steps" id="algoSteps">
+          <button data-step="question" class="active">1. Запитання</button>
+          <button data-step="type">2. Тип даних</button>
+          <button data-step="shape">3. Форма</button>
+          <button data-step="color">4. Кольори/легенда</button>
+          <button data-step="refine">5. Уточнення</button>
+        </div>
+        <div class="algo-preview" id="algoPreview">
+          <div class="algo-title"></div>
+          <div class="algo-text"></div>
+          <div class="algo-visual"></div>
+        </div>
+        <div class="algo-chart">
+          <canvas id="algoChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Чек швидкого підбору</p>
+          <h2>Підписи, кольори, масштаб</h2>
+          <p class="muted">Натискайте на пункти, щоб відмітити перед публікацією.</p>
+        </div>
+      </div>
+      <div class="checklist" id="checklist2">
+        <button class="check-item" data-check="labels">Є прямі підписи ключових точок.</button>
+        <button class="check-item" data-check="colors">Не більше 5 кольорів у головному графіку.</button>
+        <button class="check-item" data-check="order">Категорії відсортовані за спаданням або логікою.</button>
+        <button class="check-item" data-check="scale">Масштаби узгоджені між серіями.</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

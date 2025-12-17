@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оперативні показники — стислий дашборд</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d130e;
+      --panel: #0f1a11;
+      --muted: #8aa085;
+      --text: #eef4ea;
+      --accent: #e6b422;
+      --accent-2: #d48a1e;
+      --accent-3: #7fbf6b;
+      --grid: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 25%, rgba(230, 180, 34, 0.12), transparent 30%),
+                  radial-gradient(circle at 75% 20%, rgba(127, 191, 107, 0.12), transparent 32%),
+                  radial-gradient(circle at 40% 80%, rgba(212, 138, 30, 0.10), transparent 32%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+    h2 { font-size: 20px; }
+    p { margin: 0; color: var(--muted); }
+    a { color: var(--accent); }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+      min-height: calc(100vh - 64px);
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+    header.panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      backdrop-filter: blur(12px);
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .metric-value {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    .delta {
+      font-size: 14px;
+      color: var(--accent-3);
+    }
+    .delta.down { color: #fb7185; }
+    .chart {
+      width: 100%;
+      height: clamp(200px, 24vw, 260px);
+      max-height: 260px;
+      display: block;
+    }
+    .stacked {
+      display: grid;
+      gap: 10px;
+    }
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    @media (max-width: 720px) {
+      body { padding: 18px; }
+      header.panel { position: static; }
+      .chart { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <header class="panel">
+      <div>
+        <h1>Оперативні сигнали</h1>
+        <p id="direction"></p>
+      </div>
+      <div class="meta-row" id="meta"></div>
+      <div class="chips">
+        <div class="chip" id="sectors-chip"></div>
+        <div class="chip" id="brigades-chip"></div>
+      </div>
+      <p class="note" id="note"></p>
+    </header>
+
+    <section class="grid-3" id="kpis"></section>
+
+    <section class="grid-2">
+      <div class="panel">
+        <div class="card-title">Інтенсивність ворожого вогню</div>
+        <canvas class="chart" id="fireChart"></canvas>
+      </div>
+      <div class="panel">
+        <div class="card-title">Індекс ризику прориву</div>
+        <canvas class="chart" id="riskChart"></canvas>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="panel">
+        <div class="card-title">Вчасні логістичні доставки</div>
+        <canvas class="chart" id="logisticsChart"></canvas>
+      </div>
+      <div class="panel">
+        <div class="card-title">Покриття розвідки БпЛА</div>
+        <canvas class="chart" id="reconChart"></canvas>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    async function load() {
+      const res = await fetch("../data.json");
+      const data = await res.json();
+
+      const sectors = Object.fromEntries(data.sectors.map(s => [s.id, s.name]));
+      const brigades = Object.fromEntries(data.brigades.map(b => [b.id, b]));
+
+      const metricById = id => data.metrics.find(m => m.id === id);
+      const avg = arr => arr.reduce((a, b) => a + b, 0) / (arr.length || 1);
+
+      document.getElementById("direction").textContent = data.meta.direction_name || "Напрямок не вказано";
+      document.getElementById("meta").textContent = `Тиждень ${data.meta.week_start} – ${data.meta.week_end}`;
+      document.getElementById("note").textContent = data.meta.note;
+      document.getElementById("sectors-chip").textContent = `Сектори: ${data.meta.classifier.sectors_count}`;
+      document.getElementById("brigades-chip").textContent = `Бригади: ${data.meta.classifier.brigades_count}`;
+
+      const intercept = metricById("air_defence_intercept_rate");
+      const ew = metricById("ew_effectiveness_against_uav");
+      const forecast = metricById("forecast_accuracy");
+      const avgIntercept = avg(intercept.values.map(v => v.current_week));
+      const avgEw = avg(ew.values.map(v => v.current_week));
+      const avgForecast = avg(forecast.values.map(v => v.current_week));
+
+      const kpis = [
+        { label: "ППО перехоплення", value: `${(avgIntercept * 100).toFixed(0)}%`, delta: deltaPct(avgIntercept, avg(intercept.values.map(v => v.prev_week))) },
+        { label: "Ефективність РЕБ проти БпЛА", value: `${(avgEw * 100).toFixed(0)}%`, delta: deltaPct(avgEw, avg(ew.values.map(v => v.prev_week))) },
+        { label: "Точність прогнозів", value: `${(avgForecast * 100).toFixed(0)}%`, delta: deltaPct(avgForecast, avg(forecast.values.map(v => v.prev_week))) },
+      ];
+      const kpiHost = document.getElementById("kpis");
+      kpiHost.innerHTML = "";
+      kpis.forEach(k => {
+        const card = document.createElement("div");
+        card.className = "panel stacked";
+        card.innerHTML = `
+          <div class="card-title">${k.label}</div>
+          <div class="metric-value">${k.value}</div>
+          <div class="delta ${k.delta.startsWith("-") ? "down" : ""}">${k.delta}</div>
+        `;
+        kpiHost.appendChild(card);
+      });
+
+      buildFireChart(metricById("enemy_fire_intensity"), sectors);
+      buildRiskChart(metricById("breakthrough_risk_index"), sectors);
+      buildLogisticsChart(metricById("logistics_timely_deliveries"), sectors);
+      buildReconChart(metricById("uav_recon_coverage"), sectors);
+    }
+
+    function deltaPct(current, prev) {
+      const diff = ((current - prev) / prev) * 100;
+      const sign = diff >= 0 ? "+" : "";
+      return `${sign}${diff.toFixed(1)}% проти мин.`;
+    }
+
+    function buildFireChart(metric, sectors) {
+      const ctx = document.getElementById("fireChart");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: metric.values.map(v => sectors[v.sector_id]),
+          datasets: [
+            { label: "Поточний тиждень", data: metric.values.map(v => v.current_week), backgroundColor: "rgba(230, 180, 34, 0.75)" },
+            { label: "Минулого тижня", data: metric.values.map(v => v.prev_week), backgroundColor: "rgba(212, 138, 30, 0.55)" },
+          ],
+        },
+        options: baseBarOptions("Інтенсивність ворожого вогню (кількість епізодів)"),
+      });
+    }
+
+    function buildRiskChart(metric, sectors) {
+      const ctx = document.getElementById("riskChart");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: metric.values.map(v => sectors[v.sector_id]),
+          datasets: [{
+            label: "Поточний тиждень",
+            data: metric.values.map(v => v.current_week),
+            borderColor: "#d48a1e",
+            backgroundColor: "rgba(212, 138, 30, 0.18)",
+            tension: 0.35,
+            fill: true,
+          }, {
+            label: "Минулого тижня",
+            data: metric.values.map(v => v.prev_week),
+            borderColor: "#7fbf6b",
+            borderDash: [6, 4],
+            tension: 0.35,
+            fill: false,
+          }],
+        },
+        options: {
+          ...baseChartOptions("Індекс ризику прориву (0-1)"),
+          scales: {
+            y: { beginAtZero: true, max: 1, grid: { color: "rgba(255,255,255,0.08)" } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    function buildReconChart(metric, sectors) {
+      const ctx = document.getElementById("reconChart");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: metric.values.map(v => sectors[v.sector_id]),
+          datasets: [
+            {
+              label: "Поточний тиждень",
+              data: metric.values.map(v => v.current_week),
+              borderColor: "#e6b422",
+              backgroundColor: "rgba(230, 180, 34, 0.16)",
+              fill: true,
+              tension: 0.35,
+            },
+            {
+              label: "Минулого тижня",
+              data: metric.values.map(v => v.prev_week),
+              borderColor: "#7fbf6b",
+              borderDash: [4, 4],
+              fill: false,
+              tension: 0.35,
+            }
+          ]
+        },
+        options: {
+          ...baseChartOptions("Частка покриття БпЛА (0-1)"),
+          scales: {
+            y: { beginAtZero: true, max: 1, grid: { color: "rgba(255,255,255,0.08)" } },
+            x: { grid: { display: false }, ticks: { color: "#e7e9f1" } },
+          }
+        }
+      });
+    }
+
+    function buildLogisticsChart(metric, sectors) {
+      const ctx = document.getElementById("logisticsChart");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: metric.values.map(v => sectors[v.sector_id]),
+          datasets: [{
+            label: "% вчасних доставок",
+            data: metric.values.map(v => (v.current_week * 100).toFixed(0)),
+            backgroundColor: metric.values.map(v => v.current_week >= 0.85 ? "#7fbf6b" : "#e6b422"),
+          }]
+        },
+        options: baseBarOptions("Частка вчасних поставок, %"),
+      });
+    }
+
+    function baseBarOptions(title) {
+      return {
+        ...baseChartOptions(title),
+        scales: {
+          y: { beginAtZero: true, grid: { color: "rgba(255,255,255,0.08)" }, ticks: { color: "#e7e9f1" } },
+          x: { grid: { display: false }, ticks: { color: "#e7e9f1" } },
+        }
+      };
+    }
+
+    function baseChartOptions(title) {
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: "#e7e9f1" } },
+          title: { display: false, text: title, color: "#e7e9f1" },
+          tooltip: { backgroundColor: "#11192f", borderColor: "#334155", borderWidth: 1 }
+        },
+      };
+    }
+
+    load();
+  </script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Основи графічного дизайну для візуалізації даних</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero__content">
+        <p class="eyebrow">Тема 5 · Заняття 6 · 90 хв</p>
+        <h1>Основи графічного дизайну та використання для візуалізації даних</h1>
+        <p class="lede">Швидкий бриф для військових аналітиків: як мислити графічно, скорочувати шум, будувати дашборди, що підтримують рішення.</p>
+        <div class="hero__actions">
+          <a class="btn primary" href="#agenda">До плану</a>
+          <a class="btn ghost" href="#workshop">Практичний блок</a>
+        </div>
+        <div class="chips">
+          <span class="chip">Командний пункт · ситуаційна кімната</span>
+          <span class="chip">Візуальна дисципліна</span>
+          <span class="chip">Читабельність > декор</span>
+        </div>
+      </div>
+      <div class="hero__viz">
+        <div class="viz-card">
+          <div class="viz-metric">
+            <p>Готовність</p>
+            <strong id="readinessValue">82%</strong>
+          </div>
+          <div class="viz-bars" id="heroBars"></div>
+          <p class="viz-note">Сигнал/шум: <span id="signalNote">0.82</span></p>
+        </div>
+        <div class="badge">Live demo</div>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <a href="#goals">Мета</a>
+      <a href="#agenda">План 90 хв</a>
+      <a href="#principles">Принципи</a>
+      <a href="#charts">Вибір графіків</a>
+      <a href="#readability">Читабельність</a>
+      <a href="#dashboard">Дашборд</a>
+      <a href="#workshop">Вправи</a>
+      <a href="#quiz">Тест</a>
+    </nav>
+
+    <main>
+      <section class="card-grid" id="goals">
+        <div class="card">
+          <p class="eyebrow">Мета</p>
+          <h3>Що беремо з заняття</h3>
+          <ul class="tight">
+            <li>Розуміємо базові принципи графічного дизайну.</li>
+            <li>Мапуємо тип даних → тип візуалізації.</li>
+            <li>Будуємо дашборди без зайвих елементів.</li>
+          </ul>
+        </div>
+        <div class="card highlight">
+          <p class="eyebrow">Контекст</p>
+          <h3>Для військової аналітики</h3>
+          <ul class="tight">
+            <li>Показники готовності підрозділів та логістики.</li>
+            <li>Часові тренди (ротації, поставки, втрати).</li>
+            <li>Просторові дані (маршрути, райони відповідальності).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Формат</p>
+          <h3>90 хвилин</h3>
+          <p>Інтерактивні розбори кейсів, швидкі вправи в групах, міні-тест наприкінці.</p>
+        </div>
+      </section>
+
+      <section class="agenda" id="agenda">
+        <div class="section-head">
+          <p class="eyebrow">Хронометраж</p>
+          <h2>План заняття</h2>
+        </div>
+        <div class="timeline">
+          <div class="timecard">
+            <div class="time">0–5 хв</div>
+            <div class="content">
+              <h4>Вступ</h4>
+              <p>Цілі, очікування, короткий маршрут лекції.</p>
+            </div>
+          </div>
+          <div class="timecard">
+            <div class="time">5–25 хв</div>
+            <div class="content">
+              <h4>Основи дизайну</h4>
+              <p>Композиція, баланс, контраст, ієрархія, кольори, типографіка.</p>
+            </div>
+          </div>
+          <div class="timecard">
+            <div class="time">25–40 хв</div>
+            <div class="content">
+              <h4>Аналіз прикладів</h4>
+              <p>Що заважає читанню, як прибирати шум, приклади дашбордів.</p>
+            </div>
+          </div>
+          <div class="timecard break">
+            <div class="time">40–50 хв</div>
+            <div class="content">
+              <h4>Перерва</h4>
+              <p>Пауза на 10 хв.</p>
+            </div>
+          </div>
+          <div class="timecard">
+            <div class="time">50–70 хв</div>
+            <div class="content">
+              <h4>Дизайн + дані</h4>
+              <p>Вибір графіків, точність і доступність, критерії для типів даних.</p>
+            </div>
+          </div>
+          <div class="timecard">
+            <div class="time">70–85 хв</div>
+            <div class="content">
+              <h4>Інтерактив</h4>
+              <p>Групове завдання: спроєктувати подання для наданих даних.</p>
+            </div>
+          </div>
+          <div class="timecard">
+            <div class="time">85–90 хв</div>
+            <div class="content">
+              <h4>Підсумки</h4>
+              <p>Головні принципи, питання/відповіді, ресурси для самостійної роботи.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="principles" id="principles">
+        <div class="section-head">
+          <p class="eyebrow">Принципи</p>
+          <h2>Дизайн без шуму</h2>
+        </div>
+        <div class="pillars">
+          <article class="pillar">
+            <h4>Ієрархія</h4>
+            <p>Розмір, колір, відступи керують поглядом. Питання: що ви хочете, щоб офіцер побачив за 5 секунд?</p>
+          </article>
+          <article class="pillar">
+            <h4>Контраст</h4>
+            <p>Виділяємо різницю станів: зелений — норма, бурштиновий — ризик, червоний — дія негайно.</p>
+          </article>
+          <article class="pillar">
+            <h4>Баланс</h4>
+            <p>Зважений простір між блоками. Нічого не стискаємо «до стінок» — повітря = читабельність.</p>
+          </article>
+          <article class="pillar">
+            <h4>Типографіка</h4>
+            <p>2 шрифтові ваги достатньо: заголовки + тіло. Вирівнюємо по сітці, уникати центрування для таблиць.</p>
+          </article>
+          <article class="pillar">
+            <h4>Колір</h4>
+            <p>Палітра 3–5 кольорів, тест на дальтонізм: має лишатися контраст у відтінках і яскравості.</p>
+          </article>
+          <article class="pillar">
+            <h4>Послідовність</h4>
+            <p>Єдині іконки, однакові відступи, повторювані патерни карток — менше когнітивного навантаження.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="charts" id="charts">
+        <div class="section-head">
+          <p class="eyebrow">Вибір візуалів</p>
+          <h2>Підібрати графік під тип даних</h2>
+        </div>
+        <div class="chart-selector">
+          <div class="chart-buttons" id="chartButtons"></div>
+          <div class="chart-list" id="chartList"></div>
+        </div>
+        <div class="note">
+          <strong>Принцип адаптації:</strong> кількісні → показати масштаб і тренд; якісні → групування; часові → ритм і зміни; просторові → карта + відстані; порівняння → вирівняти базові лінії.
+        </div>
+      </section>
+
+      <section class="readability" id="readability">
+        <div class="section-head">
+          <p class="eyebrow">Сигнал/шум</p>
+          <h2>Тренажер читабельності</h2>
+        </div>
+        <div class="readability-grid">
+          <div class="readability-card">
+            <header>
+              <h4>Контролер шуму</h4>
+              <p>Зсувайте, щоб побачити, як змінюється сприйняття графіка.</p>
+            </header>
+            <input type="range" id="noiseSlider" min="0" max="100" value="18">
+            <div class="readout">
+              <span>Шум: <strong id="noiseValue">18%</strong></span>
+              <span>Сигнал: <strong id="signalValue">82%</strong></span>
+            </div>
+            <div class="bars bars--demo" id="demoBars"></div>
+            <ul class="tight">
+              <li>0–25% шуму — оптимум: видно тренд, немає зайвих рамок.</li>
+              <li>50%+ шуму — перевантаження: тіні, 3D, зайві сітки, надмір кольорів.</li>
+            </ul>
+          </div>
+          <div class="readability-card checklist">
+            <h4>Чек-ліст перед публікацією</h4>
+            <ul>
+              <li><input type="checkbox" checked> Є заголовок-дія: що зробити / на що реагувати.</li>
+              <li><input type="checkbox" checked> Легенда не дублює очевидне, немає «різнокольорового зоопарку».</li>
+              <li><input type="checkbox" checked> Вирівнювання по сітці, однакові відступи між картками.</li>
+              <li><input type="checkbox"> Підписані одиниці виміру і шкали.</li>
+              <li><input type="checkbox"> Тест на дальтонізм пройдено (символи + відтінки).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard" id="dashboard">
+        <div class="section-head">
+          <p class="eyebrow">Командний дашборд</p>
+          <h2>Макет для аналізу готовності</h2>
+        </div>
+        <div class="dash-grid">
+          <div class="tile metric">
+            <p>Боєготовність (батальйони)</p>
+            <strong>82% <span class="trend up">+4%</span></strong>
+            <small>Тиждень до тижня</small>
+          </div>
+          <div class="tile metric">
+            <p>Постачання (доби запасу)</p>
+            <strong>6.5 <span class="trend down">-0.5</span></strong>
+            <small>Ціль: 7+</small>
+          </div>
+          <div class="tile chart">
+            <p>Динаміка ротацій</p>
+            <div class="bars" id="rotationBars"></div>
+          </div>
+          <div class="tile chart">
+            <p>Просторова концентрація</p>
+            <div class="map">
+              <div class="dot a">Сектор Пн</div>
+              <div class="dot b">Сектор Сх</div>
+              <div class="dot c">Сектор Пд</div>
+            </div>
+          </div>
+          <div class="tile list">
+            <p>Пріоритети дій</p>
+            <ol>
+              <li>Підсилити логістику у Секторі Сх (низький запас пального).</li>
+              <li>Уніфікувати легенду в дашбордах бригад (зменшити шум).</li>
+              <li>Додати картку з часом прибуття конвоїв (ETA) у реальному часі.</li>
+            </ol>
+          </div>
+          <div class="tile list">
+            <p>Індикатори ризику</p>
+            <ul>
+              <li><span class="badge danger"></span> Нестача БК на 2 дні у секторі Пд.</li>
+              <li><span class="badge warning"></span> Розбіжність даних між джерелами (SIGINT vs HUMINT).</li>
+              <li><span class="badge ok"></span> Новий канал звірки даних впроваджено.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="workshop" id="workshop">
+        <div class="section-head">
+          <p class="eyebrow">Практика</p>
+          <h2>Вправа для груп</h2>
+        </div>
+        <div class="workshop-grid">
+          <div class="card">
+            <h4>Кейс</h4>
+            <p>У вас є дані про готовність підрозділів, поповнення запасів і часові тренди втрат техніки.</p>
+            <ul class="tight">
+              <li>Крок 1: виберіть 3 ключові метрики для рішення командира.</li>
+              <li>Крок 2: спроєктуйте картку/графік для кожної (5 хв).</li>
+              <li>Крок 3: звірте з чек-лістом і покажіть групі.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Шаблон картки</h4>
+            <div class="template-card">
+              <p class="eyebrow">Заголовок-доручення</p>
+              <strong>Показник + одиниці</strong>
+              <p>Контекст: ціль, тренд, ризик, діюча особа.</p>
+              <div class="tag-row">
+                <span class="chip">Метрика</span>
+                <span class="chip">Ризик</span>
+                <span class="chip">Дія</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Питання для обговорення</h4>
+            <ol class="tight">
+              <li>Що прибрати, щоб збільшити сигнал?</li>
+              <li>Чи є кольори, що дублюють зміст, а не додають сенсу?</li>
+              <li>Як позначити невизначеність/якість джерела?</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz" id="quiz">
+        <div class="section-head">
+          <p class="eyebrow">Самоперевірка</p>
+          <h2>Швидкий тест (3 питання)</h2>
+        </div>
+        <div class="quiz-card">
+          <div class="question" data-id="q1">
+            <p><strong>1.</strong> Який принцип першим допоможе прибрати візуальний шум у дашборді?</p>
+            <label><input type="radio" name="q1" value="a"> Збільшити кількість кольорів для різних серій</label>
+            <label><input type="radio" name="q1" value="b"> Вирівняти елементи по сітці та прибрати зайві рамки</label>
+            <label><input type="radio" name="q1" value="c"> Додати 3D-ефекти для об'єму</label>
+          </div>
+          <div class="question" data-id="q2">
+            <p><strong>2.</strong> Який тип графіка краще для часових трендів готовності?</p>
+            <label><input type="radio" name="q2" value="a"> Кругова діаграма</label>
+            <label><input type="radio" name="q2" value="b"> Лінійний графік або area</label>
+            <label><input type="radio" name="q2" value="c"> Діаграма розсіювання без осі часу</label>
+          </div>
+          <div class="question" data-id="q3">
+            <p><strong>3.</strong> Як позначити критичний показник, не порушивши доступність?</p>
+            <label><input type="radio" name="q3" value="a"> Лише червоним кольором</label>
+            <label><input type="radio" name="q3" value="b"> Кольором + іконкою/формою та чітким підписом</label>
+            <label><input type="radio" name="q3" value="c"> Міганням тексту</label>
+          </div>
+          <button class="btn primary" id="checkQuiz">Перевірити</button>
+          <p id="quizResult" class="quiz-result"></p>
+        </div>
+      </section>
+
+      <section class="resources" id="resources">
+        <div class="section-head">
+          <p class="eyebrow">Ресурси</p>
+          <h2>Підготуватися самостійно</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <h4>Чек-лист дашборду</h4>
+            <ul class="tight">
+              <li>1 метрика = 1 картка.</li>
+              <li>Одиниці виміру і шкали підписані.</li>
+              <li>Легенда мінімальна, відступи однакові.</li>
+              <li>Колір = статус, форма/іконка = дублювання для доступності.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Натхнення</h4>
+            <p>storytellingwithdata.com, дата-дашборди НАТО, приклади з SIGACTS/ISR (мінімум шуму).</p>
+          </div>
+          <div class="card">
+            <h4>Практика</h4>
+            <p>Візьміть останній звіт та переробіть один графік за принципами заняття. Порівняйте «було/стало» з колегою.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Тема 5 · Заняття 6 — графічний дизайн для даних. Питання: обговоримо на сесії Q&A.</p>
+      <a href="#top" class="btn ghost">⬆ До початку</a>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

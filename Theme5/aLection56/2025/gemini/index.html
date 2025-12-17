@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оперативний Дашборд</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Custom config for theme and icons -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "bg-main": "#EBE9E4",
+              "bg-sidebar": "#1C241F",
+              card: "#F7F6F2",
+              "text-primary": "#2D332F",
+              "text-secondary": "#6B706B",
+              "accent-green": "#4A7A45",
+              "accent-red": "#B93A32",
+              "border-color": "#D1CEC6",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Стилі для кастомного скролбару */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d1cec6;
+        border-radius: 2px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #a09d96;
+      }
+
+      /* Фіксована висота для блоку графіків */
+      #main-charts-block {
+        min-height: 180px; /* Мінімальна висота для графіків */
+        height: calc(
+          100vh - 400px
+        ); /* Приблизний розрахунок: 100vh - (шапка 50 + kpi 100 + таблиця 220 + відступи 30) */
+        flex-grow: 1;
+        display: grid;
+      }
+
+      /* Адаптивна висота */
+      @media (min-width: 1024px) {
+        #main-charts-block {
+          height: auto; /* Дозволити flex-1 працювати на великих екранах */
+        }
+      }
+    </style>
+  </head>
+  <body class="overflow-hidden">
+    <div
+      id="app"
+      class="flex h-screen w-full overflow-hidden bg-bg-main font-sans selection:bg-[#C4C0B5]"
+    >
+      <!-- Контент буде згенеровано тут JS -->
+    </div>
+
+    <script>
+      // --- DATA FROM JSON ---
+      const RAW_DATA = {
+        meta: {
+          week_start: "2025-11-24",
+          week_end: "2025-11-30",
+          direction_name: 'Оперативний напрямок "Південь"',
+        },
+        sectors: [
+          { id: "S1", name: "Сектор Північний" },
+          { id: "S2", name: "Сектор Центральний" },
+          { id: "S3", name: "Сектор Південний" },
+        ],
+        metrics: {
+          enemy_fire: [
+            { name: "Північний", current: 145, prev: 132, risk: 0.42 },
+            { name: "Центральний", current: 212, prev: 195, risk: 0.71 },
+            { name: "Південний", current: 98, prev: 121, risk: 0.33 },
+          ],
+          kill_chain: [
+            { name: "Північний", time: 21, uav: 0.78 },
+            { name: "Центральний", time: 28, uav: 0.69 },
+            { name: "Південний", time: 19, uav: 0.82 },
+          ],
+          logistics: [
+            { name: "Північний", value: 86 },
+            { name: "Центральний", value: 78 },
+            { name: "Південний", value: 91 },
+          ],
+        },
+        brigades: [
+          {
+            id: "B59",
+            name: "59 омбр",
+            sector: "Північний",
+            ammo: 0.93,
+            readiness: 0.74,
+          },
+          {
+            id: "B80",
+            name: "80 одшбр",
+            sector: "Північний",
+            ammo: 1.08,
+            readiness: 0.69,
+          },
+          {
+            id: "B36",
+            name: "36 обрмп",
+            sector: "Центральний",
+            ammo: 0.97,
+            readiness: 0.81,
+          },
+          {
+            id: "B27",
+            name: "27 ап",
+            sector: "Центральний",
+            ammo: 1.15,
+            readiness: 0.77,
+          },
+          {
+            id: "B128",
+            name: "128 огшбр",
+            sector: "Південний",
+            ammo: 0.89,
+            readiness: 0.68,
+          },
+        ],
+      };
+
+      // --- THEME & UTILS ---
+      const THEME = {
+        bgMain: "bg-bg-main",
+        bgSidebar: "bg-bg-sidebar",
+        card: "bg-card",
+        cardHover: "hover:bg-[#FFFFFF]",
+        textPrimary: "text-text-primary",
+        textSecondary: "text-text-secondary",
+        accentGreen: "#4A7A45",
+        accentRed: "#B93A32",
+        border: "border-border-color",
+      };
+
+      // Іконки Lucide (спрощені до SVG)
+      const Icons = {
+        Target: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+        Shield: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>`,
+        Activity: `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+        Truck: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M16 18h2a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2h-2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="19" cy="18" r="2"/></svg>`,
+        AlertTriangle: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h18.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+        Layout: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>`,
+        Eye: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s5.333-7 10-7 10 7 10 7-5.333 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+        Crosshair: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M22 12h-4"/><path d="M6 12H2"/><path d="M12 6V2"/><path d="M12 22v-4"/></svg>`,
+        Zap: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+        Settings: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.44a2 2 0 0 1-2 2h-.44a2 2 0 0 0-2 2v.44a2 2 0 0 1-2 2h-.44a2 2 0 0 0-2 2v.44a2 2 0 0 1 2 2h.44a2 2 0 0 0 2 2v.44a2 2 0 0 1 2 2h.44a2 2 0 0 0 2 2v.44a2 2 0 0 1 2 2h.44a2 2 0 0 0 2 2v.44a2 2 0 0 1 2-2h.44a2 2 0 0 0 2-2v-.44a2 2 0 0 1 2-2h.44a2 2 0 0 0 2-2v-.44a2 2 0 0 1 2-2h.44a2 2 0 0 0 2-2v-.44a2 2 0 0 1-2-2h-.44a2 2 0 0 0-2-2v-.44a2 2 0 0 1-2-2h-.44a2 2 0 0 0-2-2v-.44a2 2 0 0 1-2-2h-.44z"/><circle cx="12" cy="12" r="3"/></svg>`,
+      };
+
+      // --- STATE MANAGEMENT (Vanilla JS equivalent) ---
+      let activeTab = "overview";
+      let designMode = false;
+      let mainChartInstance = null;
+      let totalFire = 0;
+      let avgReadiness = 0;
+
+      /**
+       * Обчислює агреговані метрики.
+       */
+      function calculateMetrics() {
+        totalFire = RAW_DATA.metrics.enemy_fire.reduce(
+          (acc, curr) => acc + curr.current,
+          0
+        );
+        const totalReadiness = RAW_DATA.brigades.reduce(
+          (acc, curr) => acc + curr.readiness,
+          0
+        );
+        avgReadiness = (
+          (totalReadiness / RAW_DATA.brigades.length) *
+          100
+        ).toFixed(0);
+      }
+
+      /**
+       * Рендерить іконку SVG
+       */
+      function renderIcon(name, size, className) {
+        const svg = Icons[name];
+        if (!svg) return "";
+        // Заміна розмірів у SVG-коді
+        const sizedSvg = svg
+          .replace(/width="\d+"/, `width="${size}"`)
+          .replace(/height="\d+"/, `height="${size}"`);
+
+        return `<span class="${className}">${sizedSvg}</span>`;
+      }
+
+      /**
+       * Рендерить картку статистики (KPI)
+       */
+      function renderStatCard(
+        title,
+        value,
+        subValue,
+        iconName,
+        trend,
+        designNote
+      ) {
+        const trendClass =
+          trend > 0 ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700";
+        const trendDisplay = trend
+          ? `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full ${trendClass}">${
+              trend > 0 ? "+" : ""
+            }${trend}%</span>`
+          : "";
+
+        const designOverlay = designMode
+          ? `
+                <div class="absolute inset-0 bg-blue-500/10 border border-dashed border-blue-500 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 backdrop-blur-[1px]">
+                    <div class="bg-blue-600 text-white text-[10px] p-1.5 rounded shadow-lg max-w-[90%] text-center">
+                        <strong>Принцип:</strong> ${designNote}
+                    </div>
+                </div>
+            `
+          : "";
+
+        return `
+                <div class="relative p-3 rounded-xl shadow-sm border border-opacity-40 transition-all duration-300 h-full flex flex-col justify-between ${
+                  THEME.card
+                } ${THEME.border} hover:bg-[#FFFFFF] group">
+                    ${designOverlay}
+                    <div class="flex justify-between items-start">
+                        <div class="p-1.5 rounded-lg bg-[#E3E1DB]">
+                            ${renderIcon(iconName, 18, "text-[#4A5E4F]")}
+                        </div>
+                        ${trendDisplay}
+                    </div>
+                    <div class="mt-1">
+                        <h3 class="text-xs font-medium ${
+                          THEME.textSecondary
+                        } truncate">${title}</h3>
+                        <div class="flex items-baseline gap-1.5">
+                            <span class="text-xl font-bold ${
+                              THEME.textPrimary
+                            }">${value}</span>
+                            ${
+                              subValue
+                                ? `<span class="text-[10px] text-gray-500 truncate">${subValue}</span>`
+                                : ""
+                            }
+                        </div>
+                    </div>
+                </div>
+            `;
+      }
+
+      /**
+       * Рендерить заголовок секції
+       */
+      function renderSectionHeader(title, note) {
+        const noteDisplay = designMode
+          ? `
+                <span class="text-[10px] font-mono text-blue-600 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">
+                    ${note}
+                </span>
+            `
+          : "";
+
+        return `
+                <div class="flex justify-between items-center mb-2 flex-shrink-0">
+                    <h2 class="text-sm lg:text-base font-bold ${THEME.textPrimary}">${title}</h2>
+                    ${noteDisplay}
+                </div>
+            `;
+      }
+
+      /**
+       * Ініціалізує головний комбінований графік (Chart.js)
+       */
+      function initMainChart() {
+        const ctx = document.getElementById("main-chart");
+        if (!ctx) return;
+
+        if (mainChartInstance) {
+          mainChartInstance.destroy();
+        }
+
+        const labels = RAW_DATA.metrics.enemy_fire.map((d) => d.name);
+        const currentData = RAW_DATA.metrics.enemy_fire.map((d) => d.current);
+        const prevData = RAW_DATA.metrics.enemy_fire.map((d) => d.prev);
+        const riskData = RAW_DATA.metrics.enemy_fire.map((d) => d.risk * 100); // Chart.js працює з абсолютними значеннями, помножимо на 100
+
+        mainChartInstance = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                type: "bar",
+                label: "Мин. тиж.",
+                data: prevData,
+                backgroundColor: "#D1CEC6",
+                yAxisID: "y",
+              },
+              {
+                type: "bar",
+                label: "Поточ. тиж.",
+                data: currentData,
+                backgroundColor: "#2D332F",
+                yAxisID: "y",
+              },
+              {
+                type: "line",
+                label: "Ризик (%)",
+                data: riskData,
+                borderColor: THEME.accentRed,
+                backgroundColor: THEME.accentRed,
+                borderWidth: 2,
+                yAxisID: "y1",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                labels: {
+                  font: { size: 10, family: "Inter" },
+                  boxWidth: 8,
+                  boxHeight: 8,
+                },
+              },
+              tooltip: {
+                bodyFont: { size: 12 },
+                titleFont: { size: 12, weight: "bold" },
+                backgroundColor: THEME.bgSidebar,
+                padding: 8,
+                boxPadding: 3,
+                cornerRadius: 4,
+              },
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { font: { size: 10 } },
+              },
+              y: {
+                type: "linear",
+                position: "left",
+                grid: { color: "#E5E5E5" },
+                ticks: { font: { size: 10 } },
+              },
+              y1: {
+                type: "linear",
+                position: "right",
+                min: 0,
+                max: 100,
+                grid: { drawOnChartArea: false },
+                ticks: {
+                  font: { size: 10, color: THEME.accentRed },
+                  callback: function (value) {
+                    return value + "%";
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+
+      /**
+       * Головна функція рендерингу всього дашборду.
+       */
+      function renderDashboard() {
+        calculateMetrics();
+
+        const app = document.getElementById("app");
+
+        // --- 1. SIDEBAR ---
+        const sidebar = `
+                <aside class="w-16 lg:w-56 flex-shrink-0 flex flex-col justify-between py-4 px-3 ${
+                  THEME.bgSidebar
+                } text-gray-300 shadow-xl z-20">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6 lg:mb-8 pl-1">
+                            <div class="w-8 h-8 rounded bg-accent-green flex items-center justify-center text-white font-bold shrink-0">ОУ</div>
+                            <span class="text-base font-semibold tracking-wide text-[#EBE9E4] hidden lg:block whitespace-nowrap">ПІВДЕНЬ</span>
+                        </div>
+                        <nav id="nav-tabs" class="space-y-1">
+                            ${[
+                              {
+                                id: "overview",
+                                icon: "Layout",
+                                label: "Загальна картина",
+                              },
+                              { id: "intel", icon: "Eye", label: "Розвідка" },
+                              {
+                                id: "ops",
+                                icon: "Crosshair",
+                                label: "Операції",
+                              },
+                              {
+                                id: "logistics",
+                                icon: "Truck",
+                                label: "Логістика",
+                              },
+                            ]
+                              .map(
+                                (item) => `
+                                <button
+                                    data-tab="${item.id}"
+                                    class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative text-gray-400 hover:bg-[#2A362D] ${
+                                      activeTab === item.id
+                                        ? "bg-[#2A362D] text-white shadow-inner border-l-4 border-accent-green"
+                                        : ""
+                                    }"
+                                >
+                                    ${renderIcon(item.icon, 18, "shrink-0")}
+                                    <span class="hidden lg:block text-sm font-medium">${
+                                      item.label
+                                    }</span>
+                                </button>
+                            `
+                              )
+                              .join("")}
+                        </nav>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-2 rounded-lg border ${
+                          designMode
+                            ? "bg-blue-900/30 border-blue-500"
+                            : "border-gray-700"
+                        }">
+                            <button 
+                                id="design-mode-toggle"
+                                class="w-full flex items-center justify-center lg:justify-start gap-2 py-1.5 px-2 rounded text-xs font-bold transition-colors ${
+                                  designMode
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-gray-700 text-gray-400"
+                                }"
+                            >
+                                ${renderIcon("Settings", 14, "")}
+                                <span class="hidden lg:inline">${
+                                  designMode ? "НАВЧАННЯ ON" : "АНАЛІТИК"
+                                }</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-2 px-1">
+                            <div class="w-8 h-8 rounded-full bg-gray-600 overflow-hidden border-2 border-accent-green shrink-0">
+                                <img src="https://placehold.co/32x32/6b706b/ffffff?text=U" alt="Avatar" class="w-full h-full object-cover" />
+                            </div>
+                            <div class="hidden lg:block overflow-hidden">
+                                <p class="text-xs text-white font-medium truncate">Полковник Н.</p>
+                                <p class="text-[10px] text-gray-500 truncate">Командувач</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            `;
+
+        // --- 2. MAIN CONTENT ---
+        const mainContent = `
+                <main class="flex-1 p-3 lg:p-6 h-full overflow-hidden flex flex-col relative">
+                    <!-- HEADER -->
+                    <header class="flex justify-between items-end mb-3 flex-shrink-0">
+                        <div>
+                            <h1 class="text-xl lg:text-2xl font-bold ${
+                              THEME.textPrimary
+                            } tracking-tight leading-tight">Оперативна обстановка</h1>
+                            <p class="${
+                              THEME.textSecondary
+                            } text-xs mt-0.5 flex items-center gap-2">
+                                ${renderIcon(
+                                  "Activity",
+                                  12,
+                                  "text-text-secondary"
+                                )}
+                                ${RAW_DATA.meta.week_start} — ${
+          RAW_DATA.meta.week_end
+        }
+                            </p>
+                        </div>
+                        <div class="hidden sm:flex gap-3">
+                            <div class="px-3 py-1.5 bg-white rounded-lg shadow-sm border border-border-color text-xs font-medium text-accent-red flex items-center gap-2 animate-pulse">
+                                ${renderIcon(
+                                  "AlertTriangle",
+                                  14,
+                                  "text-accent-red"
+                                )}
+                                Ризик: Сектор "Центральний"
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- FLEX COLUMN LAYOUT -->
+                    <div class="flex-1 flex flex-col gap-3 min-h-0">
+
+                        <!-- 1. KPI ROW (Fixed Height) -->
+                        <div class="h-24 lg:h-28 shrink-0 grid grid-cols-2 lg:grid-cols-4 gap-3">
+                            ${renderStatCard(
+                              "Інтенсивність обстрілів",
+                              totalFire,
+                              "/ тиждень",
+                              "Target",
+                              12,
+                              "Proximity"
+                            )}
+                            ${renderStatCard(
+                              "Боєготовність",
+                              `${avgReadiness}%`,
+                              "в середньому",
+                              "Shield",
+                              -2,
+                              "Hierarchy"
+                            )}
+                            ${renderStatCard(
+                              "Kill-Chain (медіана)",
+                              "23 хв",
+                              "-3 хв від норми",
+                              "Zap",
+                              null,
+                              "Contrast"
+                            )}
+                            ${renderStatCard(
+                              "Забезпеченість БК",
+                              "98%",
+                              "Достатньо",
+                              "Truck",
+                              null,
+                              "Consistency"
+                            )}
+                        </div>
+
+                        <!-- 2. MIDDLE ROW - CHARTS (FLEXIBLE HEIGHT) -->
+                        <div id="main-charts-block" class="min-h-[180px] grid grid-cols-1 lg:grid-cols-12 gap-3">
+                            <!-- MAIN CHART -->
+                            <div class="col-span-1 lg:col-span-8 ${
+                              THEME.card
+                            } rounded-xl p-3 border ${
+          THEME.border
+        } shadow-sm flex flex-col">
+                                ${renderSectionHeader(
+                                  "Динаміка та ризики",
+                                  "Data-Ink"
+                                )}
+                                <div class="flex-1 w-full min-h-0">
+                                    <canvas id="main-chart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- SECONDARY METRICS (KILL-CHAIN) -->
+                            <div class="col-span-1 lg:col-span-4 ${
+                              THEME.card
+                            } rounded-xl p-3 border ${
+          THEME.border
+        } shadow-sm flex flex-col overflow-hidden">
+                                ${renderSectionHeader("Контрзаходи", "Balance")}
+                                <div class="flex-1 flex flex-col justify-center gap-2 overflow-y-auto">
+                                    ${RAW_DATA.metrics.kill_chain
+                                      .map(
+                                        (item, idx) => `
+                                        <div class="mb-1 last:mb-0">
+                                            <div class="flex justify-between items-center mb-0.5">
+                                              <span class="text-xs font-medium text-gray-700">${
+                                                item.name
+                                              }</span>
+                                              <span class="text-[10px] font-mono text-gray-500">${
+                                                item.time
+                                              }хв</span>
+                                            </div>
+                                            <div class="relative h-1.5 w-full bg-[#E3E1DB] rounded-full">
+                                               <div class="absolute h-full bg-accent-green rounded-full" style="width: ${
+                                                 item.uav * 100
+                                               }%"></div>
+                                               <div class="absolute h-3 w-0.5 bg-black -top-0.5 border-white" style="left: ${
+                                                 (item.time / 40) * 100
+                                               }%"></div>
+                                            </div>
+                                        </div>
+                                    `
+                                      )
+                                      .join("")}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. BOTTOM ROW - TABLE (Fixed height) -->
+                        <div class="h-[220px] shrink-0 min-h-[150px] ${
+                          THEME.card
+                        } rounded-xl p-3 border ${
+          THEME.border
+        } shadow-sm flex flex-col overflow-hidden">
+                            ${renderSectionHeader("Статус бригад", "F-Pattern")}
+                            <div class="flex-1 overflow-auto custom-scrollbar">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="sticky top-0 bg-[#F7F6F2] z-10">
+                                        <tr class="text-[10px] uppercase tracking-wider text-gray-500 border-b border-gray-200">
+                                            <th class="pb-1 font-medium pl-1">Бригада</th>
+                                            <th class="pb-1 font-medium">Сектор</th>
+                                            <th class="pb-1 font-medium w-1/5">Боєздатність</th>
+                                            <th class="pb-1 font-medium w-1/5">БК</th>
+                                            <th class="pb-1 font-medium text-right pr-1">Статус</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-xs">
+                                        ${RAW_DATA.brigades
+                                          .map(
+                                            (brigade) => `
+                                            <tr class="border-b border-gray-100 last:border-0 hover:bg-[#EBE9E4] transition-colors cursor-pointer">
+                                                <td class="py-2 pl-1 font-semibold text-text-primary">${
+                                                  brigade.name
+                                                }</td>
+                                                <td class="py-2 text-gray-600">${
+                                                  brigade.sector
+                                                }</td>
+                                                <td class="py-2 pr-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="h-1 w-full bg-gray-200 rounded-full">
+                                                            <div 
+                                                                class="h-full rounded-full ${
+                                                                  brigade.readiness <
+                                                                  0.7
+                                                                    ? "bg-orange-400"
+                                                                    : "bg-accent-green"
+                                                                }" 
+                                                                style="width: ${
+                                                                  brigade.readiness *
+                                                                  100
+                                                                }%"
+                                                            ></div>
+                                                        </div>
+                                                        <span class="text-[10px] w-6 text-right">${(
+                                                          brigade.readiness *
+                                                          100
+                                                        ).toFixed(0)}%</span>
+                                                    </div>
+                                                </td>
+                                                <td class="py-2 pr-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="h-1 w-full bg-gray-200 rounded-full">
+                                                            <div 
+                                                                class="h-full rounded-full ${
+                                                                  brigade.ammo >
+                                                                  1.1
+                                                                    ? "bg-blue-500"
+                                                                    : brigade.ammo <
+                                                                      0.9
+                                                                    ? "bg-accent-red"
+                                                                    : "bg-accent-green"
+                                                                }" 
+                                                                style="width: ${Math.min(
+                                                                  brigade.ammo *
+                                                                    100,
+                                                                  100
+                                                                )}%"
+                                                            ></div>
+                                                        </div>
+                                                        <span class="text-[10px] w-6 text-right">${(
+                                                          brigade.ammo * 100
+                                                        ).toFixed(0)}%</span>
+                                                    </div>
+                                                </td>
+                                                <td class="py-2 text-right pr-1">
+                                                    ${
+                                                      brigade.readiness < 0.7
+                                                        ? '<span class="text-orange-600 font-medium">Відновлення</span>'
+                                                        : '<span class="text-green-700 font-medium">Готовність</span>'
+                                                    }
+                                                </td>
+                                            </tr>
+                                        `
+                                          )
+                                          .join("")}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+            `;
+
+        app.innerHTML = sidebar + mainContent;
+
+        // --- 3. ATTACH EVENT LISTENERS ---
+
+        // Sidebar tab click handler (currently placeholder)
+        document.querySelectorAll("#nav-tabs button").forEach((button) => {
+          button.onclick = (e) => {
+            activeTab = e.currentTarget.dataset.tab;
+            // For a full conversion, would need to re-render main content based on activeTab
+            // But for this simple dashboard, we just update the visual state
+            renderDashboard();
+          };
+        });
+
+        // Design mode toggle handler
+        document.getElementById("design-mode-toggle").onclick = () => {
+          designMode = !designMode;
+          renderDashboard();
+        };
+
+        // Initialize the chart after the DOM is updated
+        initMainChart();
+      }
+
+      // Запуск дашборду при завантаженні сторінки
+      window.onload = renderDashboard;
+
+      // Перемальовуємо графік при зміні розміру вікна
+      window.onresize = () => {
+        // Використовуємо таймаут для дебаунсу і коректного оновлення Chart.js
+        setTimeout(initMainChart, 200);
+      };
+    </script>
+  </body>
+</html>

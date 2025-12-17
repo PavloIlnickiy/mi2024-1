@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everything Everywhere</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive;
+      background: repeating-linear-gradient(45deg, #ff00aa, #ff00aa 20px, #00ffd5 20px, #00ffd5 40px);
+      color: #000;
+    }
+    marquee { font-size: 32px; background: yellow; color: red; padding: 6px; }
+    .layout { padding: 8px; }
+    .panel {
+      border: 5px dashed lime;
+      background: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+      padding: 10px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    }
+    canvas { width: 100%; height: 180px; }
+    table { width: 100%; border-collapse: collapse; }
+    td, th { border: 2px dotted red; padding: 6px; }
+    .tiny { font-size: 10px; }
+  </style>
+</head>
+<body>
+  <marquee behavior="alternate">Найшвидший дашборд! (поганий за задумом)</marquee>
+  <div class="layout">
+    <div class="panel">
+      <h1>Всі метрики разом</h1>
+      <p class="tiny">Вісь починається не з нуля, щоб все було драматичніше.</p>
+      <canvas id="mixedChart"></canvas>
+    </div>
+    <div class="panel">
+      <h2>Пиріг з несумісних даних</h2>
+      <canvas id="pieChart"></canvas>
+      <p class="tiny">Кольори випадкові, підписи обрізані.</p>
+    </div>
+    <div class="panel">
+      <h2>Сира таблиця</h2>
+      <table id="raw"></table>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script>
+    fetch("../data.json").then(r => r.json()).then(data => {
+      const sectors = Object.fromEntries(data.sectors.map(s => [s.id, s.name.substring(0, 6)]));
+      const fire = data.metrics.find(m => m.id === "enemy_fire_intensity");
+      const risk = data.metrics.find(m => m.id === "breakthrough_risk_index");
+
+      new Chart(document.getElementById("mixedChart"), {
+        type: "bar",
+        data: {
+          labels: fire.values.map(v => sectors[v.sector_id]),
+          datasets: [
+            { label: "Вогонь", data: fire.values.map(v => v.current_week), backgroundColor: "#ff0000" },
+            { label: "Ризик", data: risk.values.map(v => v.current_week * 100), backgroundColor: "#00ff00" },
+            { label: "Мин. вогонь", data: fire.values.map(v => v.prev_week), type: "line", borderColor: "#0000ff", borderWidth: 5 },
+          ],
+        },
+        options: {
+          scales: {
+            y: { min: 100, max: 220 }, // обрубана вісь
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      const pieMetric = data.metrics[5]; // просто беремо шостий елемент
+      new Chart(document.getElementById("pieChart"), {
+        type: "pie",
+        data: {
+          labels: pieMetric.values.map((v, i) => "S" + (i+1)),
+          datasets: [{
+            data: pieMetric.values.map(v => v.current_week + Math.random() * 50),
+            backgroundColor: ["#ff00ff", "#ffff00", "#00ffff", "#ff8800", "#888888"],
+          }]
+        },
+        options: { plugins: { legend: { position: "bottom" } } }
+      });
+
+      const table = document.getElementById("raw");
+      table.innerHTML = "<tr><th>Ключ</th><th>Значення</th></tr>" + Object.entries(data.meta).map(([k,v]) =>
+        `<tr><td>${k}</td><td>${JSON.stringify(v)}</td></tr>`).join("");
+    });
+  </script>
+</body>
+</html>

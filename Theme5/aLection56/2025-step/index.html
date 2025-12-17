@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заняття 6 · Основи графічного дизайну</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <aside class="teacher-panel" aria-label="Панель викладача">
+      <div class="panel-header">
+        <strong>Панель викладача</strong>
+        <button class="ghost small" id="toggleHints">Підказки: увімк</button>
+      </div>
+      <label class="panel-row">
+        <span>Перейти до блоку</span>
+        <select id="blockSelect"></select>
+      </label>
+      <div class="panel-row two">
+        <button class="primary small" id="startTimer">Старт таймера</button>
+        <button class="ghost small" id="stopTimer">Стоп</button>
+      </div>
+      <div class="panel-row">
+        <small>Наступний екран: <span id="nextPreview">—</span></small>
+      </div>
+    </aside>
+
+    <header class="hero" data-block="home">
+      <div>
+        <p class="eyebrow">Тема 5 · Заняття 6</p>
+        <h1>Основи графічного дизайну та його використання для візуалізації даних</h1>
+        <p class="lede">Інтерактивний сайт для проведення 90-хвилинного заняття: тайм-менеджмент, приклади, кейси, групова робота.</p>
+        <div class="hero-actions">
+          <button class="primary" data-goto="structure">Почати заняття</button>
+          <button class="ghost" data-goto="timeline">Структура лекції</button>
+        </div>
+        <div class="meta">
+          <div>
+            <p class="label">Мета</p>
+            <p>Базові принципи дизайну + прикладне застосування для візуалізації даних.</p>
+          </div>
+          <div>
+            <p class="label">Аудиторія</p>
+            <p>Викладачі, слухачі інформаційно-аналітичних курсів, військовий менеджмент.</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <p class="label">Навігація</p>
+        <ol>
+          <li>Запустіть таймер блоку.</li>
+          <li>Перемикайте екрани зі структури.</li>
+          <li>Використовуйте приклади та завдання.</li>
+        </ol>
+        <div class="progress-block">
+          <div class="progress-label">
+            <span>Поточний блок</span>
+            <span id="currentBlockName">Старт</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="progress-footer">
+            <span id="timerStatus">00:00</span>
+            <span id="blockDuration">—</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="stage-nav" aria-label="Меню блоків">
+      <button class="pill active" data-goto="structure">Структура</button>
+      <button class="pill" data-goto="intro">0–5</button>
+      <button class="pill" data-goto="basics">5–25</button>
+      <button class="pill" data-goto="examples">25–40</button>
+      <button class="pill" data-goto="break">40–50</button>
+      <button class="pill" data-goto="data">50–70</button>
+      <button class="pill" data-goto="interactive">70–85</button>
+      <button class="pill" data-goto="summary">85–90</button>
+    </nav>
+
+    <main>
+      <section class="card section" id="structure" data-block="structure">
+        <div class="section-head">
+          <p class="eyebrow">Системна логіка</p>
+          <h2>Структура заняття</h2>
+        </div>
+        <p>Покроковий маршрут відповідає тайм-плану лекції. Клікніть на блок, щоб перейти до відповідного екрану.</p>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="card section" id="intro" data-block="intro">
+        <div class="section-head">
+          <p class="eyebrow">0–5 хв</p>
+          <h2>Вступ</h2>
+        </div>
+        <div class="grid two">
+          <div>
+            <h4>Цілі</h4>
+            <ul>
+              <li>Окреслити тему та очікувані результати.</li>
+              <li>Дати маршрут: які блоки і навіщо.</li>
+            </ul>
+            <button class="primary" data-goto="basics">Далі: Основи дизайну</button>
+          </div>
+          <div class="infocard">
+            <p class="label">План</p>
+            <ul class="bullets">
+              <li>Що таке графічний дизайн у контексті даних.</li>
+              <li>Як оцінювати якість візуалізації.</li>
+              <li>Практика групами + кейси.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="basics" data-block="basics">
+        <div class="section-head">
+          <p class="eyebrow">5–25 хв</p>
+          <h2>Частина 1: Основи графічного дизайну</h2>
+        </div>
+        <div class="principles">
+          <article class="principle">
+            <header><h4>Композиція</h4><span class="tag">Do/Don't</span></header>
+            <p>Розміщення елементів за сіткою, чіткі зони фокусу.</p>
+            <div class="do-dont">
+              <div><strong>Робити</strong><ul><li>Використовувати модульну сітку.</li><li>Вирівнювати текстові блоки.</li></ul></div>
+              <div><strong>Не робити</strong><ul><li>Стискати блоки без відступів.</li><li>Змішувати центрування та ліве вирівнювання.</li></ul></div>
+            </div>
+          </article>
+          <article class="principle">
+            <header><h4>Баланс</h4><span class="tag">Візуальна рівновага</span></header>
+            <p>Пропорційний розподіл візуальної ваги, щоб погляд рухався плавно.</p>
+            <div class="do-dont">
+              <div><strong>Робити</strong><ul><li>Поєднувати великі елементи з «повітрям».</li><li>Використовувати послідовні відступи.</li></ul></div>
+              <div><strong>Не робити</strong><ul><li>Перенавантажувати одну сторону екрана.</li><li>Додавати декоративні тіні.</li></ul></div>
+            </div>
+          </article>
+          <article class="principle">
+            <header><h4>Контраст</h4><span class="tag">Видимість</span></header>
+            <p>Чітко показує різницю між важливим і другорядним.</p>
+            <div class="do-dont">
+              <div><strong>Робити</strong><ul><li>Використовувати 1–2 акцентні кольори.</li><li>Підсилювати контраст розміром і тоном.</li></ul></div>
+              <div><strong>Не робити</strong><ul><li>Додавати багато кольорів без функції.</li><li>Застосовувати низькоконтрастний текст.</li></ul></div>
+            </div>
+          </article>
+          <article class="principle">
+            <header><h4>Ієрархія</h4><span class="tag">Пріоритет</span></header>
+            <p>Розмір, колір, позиція задають порядок читання.</p>
+            <div class="do-dont">
+              <div><strong>Робити</strong><ul><li>Виділяти заголовок і ключову метрику.</li><li>Використовувати підзаголовки.</li></ul></div>
+              <div><strong>Не робити</strong><ul><li>Однакова вага всіх текстів.</li><li>Дублювати акценти без потреби.</li></ul></div>
+            </div>
+          </article>
+          <article class="principle">
+            <header><h4>Колір</h4><span class="tag">Палітра «Степ»</span></header>
+            <p>Природні тони: оливковий, пісочний, теракотовий, світло-зелений.</p>
+            <div class="do-dont">
+              <div><strong>Робити</strong><ul><li>Перевіряти контраст (WCAG AA).</li><li>Використовувати акцент обмежено.</li></ul></div>
+              <div><strong>Не робити</strong><ul><li>Кислотні відтінки, надмір акцентів.</li><li>Кольори без функціонального сенсу.</li></ul></div>
+            </div>
+          </article>
+          <article class="principle">
+            <header><h4>Типографіка</h4><span class="tag">Читабельність</span></header>
+            <p>Sans-serif, 16–18 px для тексту, до 36 px для H1.</p>
+            <div class="do-dont">
+              <div><strong>Робити</strong><ul><li>2 сімейства максимум.</li><li>Літерспейсинг і міжряддя 1.4–1.6.</li></ul></div>
+              <div><strong>Не робити</strong><ul><li>Капслок для абзаців.</li><li>Низький контраст підписів.</li></ul></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card section" id="examples" data-block="examples">
+        <div class="section-head">
+          <p class="eyebrow">25–40 хв</p>
+          <h2>Приклади дизайну</h2>
+        </div>
+        <div class="filter-row">
+          <span>Фільтр за принципом:</span>
+          <div class="chips" id="filterChips"></div>
+        </div>
+        <div class="gallery" id="gallery"></div>
+        <div class="slider-compare">
+          <div class="compare-labels"><span>До</span><span>Після</span></div>
+          <div class="compare-frame" aria-label="Слайдер порівняння">
+            <div class="compare-before"></div>
+            <div class="compare-after" id="afterPane"></div>
+            <input type="range" min="0" max="100" value="50" id="compareSlider">
+          </div>
+        </div>
+        <button class="ghost" id="showQuestions">Питання для обговорення</button>
+      </section>
+
+      <section class="card section" id="break" data-block="break">
+        <div class="section-head">
+          <p class="eyebrow">40–50 хв</p>
+          <h2>Перерва</h2>
+        </div>
+        <p>Таймер зворотного відліку до кінця перерви.</p>
+        <div class="break-timer">
+          <div id="breakCountdown" class="big-timer">10:00</div>
+          <div class="controls">
+            <button class="primary" id="startBreak">Старт</button>
+            <button class="ghost" id="stopBreak">Стоп</button>
+            <input type="number" id="breakMinutes" min="1" max="30" value="10" aria-label="Хвилини перерви">
+          </div>
+        </div>
+      </section>
+
+      <section class="card section" id="data" data-block="data">
+        <div class="section-head">
+          <p class="eyebrow">50–70 хв</p>
+          <h2>Дизайн для візуалізації даних</h2>
+        </div>
+        <div class="grid two">
+          <div>
+            <h4>Типи візуальних елементів</h4>
+            <ul>
+              <li>Діаграми, графіки, інфографіка, таблиці, карти.</li>
+              <li>Адаптація під дані: точність, доступність, контекст.</li>
+            </ul>
+          </div>
+          <div class="infocard">
+            <p class="label">Принцип адаптації</p>
+            <p>Тип даних → візуалізація → коментар до точності, шкал і легенди.</p>
+          </div>
+        </div>
+        <div class="data-table" role="table">
+          <div class="row head" role="row">
+            <div role="columnheader">Тип даних</div>
+            <div role="columnheader">Рекомендовані візуалізації</div>
+            <div role="columnheader">Коментар</div>
+          </div>
+          <div class="row" role="row">
+            <div role="cell">Кількісні</div>
+            <div role="cell">Стовпчики, лінія, area</div>
+            <div role="cell">Вирівняти нульову лінію, підписати одиниці.</div>
+          </div>
+          <div class="row" role="row">
+            <div role="cell">Категоріальні</div>
+            <div role="cell">Горизонтальні бари, груповані бари</div>
+            <div role="cell">Сортувати за значенням, не перевантажувати кольорами.</div>
+          </div>
+          <div class="row" role="row">
+            <div role="cell">Часові</div>
+            <div role="cell">Лінія, спарклайни, таймлайн</div>
+            <div role="cell">Показати ритм і сезонність, уникати 3D.</div>
+          </div>
+          <div class="row" role="row">
+            <div role="cell">Просторові</div>
+            <div role="cell">Карта з точками/heatmap, маршрутні лінії</div>
+            <div role="cell">Чіткі підписи секторів, одна легенда.</div>
+          </div>
+        </div>
+        <div class="cases-table" id="dataCases"></div>
+      </section>
+
+      <section class="card section" id="interactive" data-block="interactive">
+        <div class="section-head">
+          <p class="eyebrow">70–85 хв</p>
+          <h2>Інтерактивна частина</h2>
+        </div>
+        <p>Групові кейси. Запишіть ваш варіант візуалізації; відповіді зберігаються локально (localStorage).</p>
+        <div class="case-grid" id="caseGrid"></div>
+      </section>
+
+      <section class="card section" id="summary" data-block="summary">
+        <div class="section-head">
+          <p class="eyebrow">85–90 хв</p>
+          <h2>Підсумки</h2>
+        </div>
+        <div class="grid two">
+          <div>
+            <h4>Ключові висновки</h4>
+            <ul>
+              <li>Принципи дизайну = читабельність + акценти.</li>
+              <li>Тип даних диктує тип графіка.</li>
+              <li>Менше шуму, більше сигналу для прийняття рішень.</li>
+            </ul>
+          </div>
+          <div class="infocard">
+            <p class="label">Ресурси</p>
+            <ul class="bullets">
+              <li>Storytelling with Data — книга + блог.</li>
+              <li>Data Viz Catalog — довідник типів графіків.</li>
+              <li>Шаблони НАТО/ISR (приклади низького шуму).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Питання для обговорення">
+      <div class="modal-body">
+        <div class="modal-head">
+          <h3>Питання для обговорення</h3>
+          <button class="ghost" id="closeModal" aria-label="Закрити">✕</button>
+        </div>
+        <ul>
+          <li>Що прибрати, щоб підсилити сигнал/шум?</li>
+          <li>Як позначити критичні дані, не втрачаючи доступності?</li>
+          <li>Який графік обрати для часових трендів логістики?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

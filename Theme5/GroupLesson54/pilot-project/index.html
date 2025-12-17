@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Підбір візуальних елементів для візуалізації даних</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="logo">Тема 5 · Заняття 4</div>
+    <nav>
+      <a href="index.html" class="active">Вступ</a>
+      <a href="question1.html">Питання 1 · Класифікація</a>
+      <a href="question2.html">Питання 2 · Підбір</a>
+      <a href="tools.html">Інструменти</a>
+      <a href="conclusions.html">Висновки</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero-block">
+      <div>
+        <p class="eyebrow">Тема 5 · Заняття 4</p>
+        <h1>Підбір візуальних елементів для візуалізації даних</h1>
+        <p class="muted">Дві навчальні сторінки: <strong>Питання 1</strong> — класифікація елементів, <strong>Питання 2</strong> — підбір під задачу. Висновки містять чекліст.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="question1.html">Почати з Питання 1</a>
+          <a class="btn ghost" href="#flow">Структура заняття</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Що всередині</h3>
+        <ul>
+          <li><strong>Питання 1.</strong> Класифікація: порівняння, динаміка, структура, розподіл, простір.</li>
+          <li><strong>Питання 2.</strong> Підбір: кейси «вдало/невдало», карти, кореляції, дрібні множини.</li>
+          <li><strong>Висновки.</strong> Чеклісти готовності та мікропрактика.</li>
+        </ul>
+        <p class="muted">Проєкт у <code>Theme5/GroupLesson54/pilot-project</code>.</p>
+      </div>
+      <div class="hero-card map-card">
+        <p class="pill">Mindmap</p>
+        <h3>Класифікація візуальних елементів (markmap)</h3>
+        <p class="muted">Швидкий огляд дерева у власному вікні для вступу.</p>
+        <div class="map-frame">
+          <iframe src="markmap.html" title="Карта класифікації візуальних елементів"></iframe>
+        </div>
+        <a class="btn ghost" href="markmap.html" target="_blank" rel="noopener">Відкрити на весь екран</a>
+      </div>
+    </section>
+
+    <section id="flow" class="grid three">
+      <div class="card">
+        <p class="pill">Крок 1</p>
+        <h3>Вступ</h3>
+        <p class="muted">Контекст заняття для військових аналітиків, мотивація та маршрут.</p>
+      </div>
+      <div class="card">
+        <p class="pill">Крок 2</p>
+        <h3>Питання 1 · Класифікація</h3>
+        <p class="muted">Типи візуалізацій і що вони відповідають; приклади «вдало/невдало».</p>
+      </div>
+      <div class="card">
+        <p class="pill">Крок 3</p>
+        <h3>Питання 2 · Підбір</h3>
+        <p class="muted">Як обрати форму під задачу, карти й кореляції, додаткові приклади.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div>
+        <p class="eyebrow">Контекст</p>
+        <h2>Для кого модуль</h2>
+        <p class="muted">Групове заняття для військових аналітиків. Показуємо різні візуальні мови на одних даних, щоб уникати помилок вибору.</p>
+      </div>
+      <div class="chip-row">
+        <span class="chip">Порівняння</span>
+        <span class="chip">Динаміка</span>
+        <span class="chip">Структура</span>
+        <span class="chip">Розподіл</span>
+        <span class="chip">Простір</span>
+      </div>
+    </section>
+
+    <section class="callout">
+      <div>
+        <h3>Навіщо модуль?</h3>
+        <p>Три сторінки допоможуть структурувати заняття: вступ задає мотивацію, блоки питань показують практику й пастки, а висновки дають правила для самоперевірки.</p>
+      </div>
+      <a class="btn primary" href="question1.html">До прикладів</a>
+    </section>
+  </main>
+</body>
+</html>

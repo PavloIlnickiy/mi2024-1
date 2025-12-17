@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Військовий дашборд</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Ліва панель -->
+    <div class="sidebar">
+      <div class="kpi">
+        <h2>Бойова готовність</h2>
+        <h1 id="intensityValue">--%</h1>
+      </div>
+
+      <div class="logistics">
+        <h3>Логістика</h3>
+        <p id="logisticsText">Завантаження...</p>
+      </div>
+
+      <div class="losses">
+        <h3>Втрати противника</h3>
+        <canvas id="lossesChart"></canvas>
+      </div>
+
+      <div class="weather">
+        <h3>Погода</h3>
+        <p id="weatherText">Завантаження...</p>
+      </div>
+    </div>
+
+    <!-- Права частина — карта -->
+    <div class="map">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

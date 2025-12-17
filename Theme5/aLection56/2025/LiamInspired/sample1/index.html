@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Степ · Оперативний дашборд</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="pattern"></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">St</div>
+      <div>
+        <div class="brand-name">Степ Дашборд</div>
+        <div class="brand-sub">Командувач напряму</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="ghost-btn">Експорт</button>
+      <button class="primary-btn">Оновити дані</button>
+      <div class="avatar">⚔️</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Оперативна картина</p>
+        <h1 id="directionTitle">Напрямок</h1>
+        <p class="muted" id="weekRange">Тиждень</p>
+        <div class="chip-row">
+          <div class="chip" id="sectorCount">0 секторів</div>
+          <div class="chip" id="brigadeCount">0 бригад</div>
+          <div class="chip accent" id="noteChip">Нотатка штабу</div>
+        </div>
+      </div>
+      <div class="hero-controls">
+        <label>
+          Відображення сектору
+          <select id="sectorSelect"></select>
+        </label>
+        <div class="legend">
+          <span class="legend-dot accent1"></span> Поточний тиждень
+          <span class="legend-dot accent2"></span> Минулий тиждень
+        </div>
+      </div>
+    </section>
+
+    <div class="main-wrap">
+      <section class="grid">
+        <div class="panel highlight compact">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Ключові показники</p>
+              <h2>Пульс напряму</h2>
+            </div>
+          </div>
+          <div class="metrics" id="keyMetrics"></div>
+        </div>
+
+        <div class="panel compact">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Сектори</p>
+              <h2>Ситуація по ділянках</h2>
+            </div>
+          </div>
+          <div class="sectors" id="sectorCards"></div>
+        </div>
+
+        <div class="panel wide compact">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Вогонь противника</p>
+              <h2>Інтенсивність обстрілів</h2>
+            </div>
+          </div>
+          <canvas id="fireChart"></canvas>
+        </div>
+
+        <div class="panel wide compact">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Реакція та захист</p>
+              <h2>Кіл-чен та ППО</h2>
+            </div>
+          </div>
+          <div class="chart-grid">
+            <div class="chart-wrap">
+              <h3>Kill-chain та евакуація</h3>
+              <canvas id="timeChart"></canvas>
+            </div>
+            <div class="chart-wrap">
+              <h3>Перехоплення та прогноз</h3>
+              <canvas id="accuracyChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="panel slim">
+          <div class="panel-head">
+            <p class="eyebrow">Сигнали</p>
+            <h2>Поля ризику</h2>
+          </div>
+          <div id="alerts" class="alerts"></div>
+        </div>
+        <div class="panel slim">
+          <div class="panel-head">
+            <p class="eyebrow">Примітка штабу</p>
+          </div>
+          <p class="muted" id="noteText"></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

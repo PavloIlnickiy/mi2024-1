@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Питання 1 · Класифікація візуальних елементів</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="logo">Тема 5 · Заняття 4 — Підбір візуальних елементів</div>
+    <nav>
+      <a href="index.html">Вступ</a>
+      <a href="question1.html" class="active">Питання 1 · Класифікація</a>
+      <a href="question2.html">Питання 2 · Підбір</a>
+      <a href="tools.html">Інструменти</a>
+      <a href="conclusions.html">Висновки</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero-block">
+      <div>
+        <p class="eyebrow">Питання 1</p>
+        <h1>Класифікація візуальних елементів</h1>
+        <p class="muted">Розбиваємо візуалізації за типами даних і запитань: порівняння, динаміка, структура, розподіл, простір. Для кожного показуємо “вдалий / невдалий” приклад.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#examples">Перейти до прикладів</a>
+          <button class="btn ghost" id="refreshCharts">Оновити дані</button>
+          <a class="btn ghost" href="https://datavizcatalogue.com/#google_vignette" target="_blank" rel="noopener">Каталог візуальних елементів</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid two" id="examples">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Лінія для динаміки</h3>
+            <p class="muted">Тренд і коливання без перевантаження.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Перевантажена секторна</h3>
+            <p class="muted">Занадто багато сегментів, немає опорної осі.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badChart"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Grouped bars для порівняння</h3>
+            <p class="muted">Чіткі осі, підписи, однаковий масштаб.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodCompare"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Pie для великої кількості</h3>
+            <p class="muted">9+ сегментів без порядку — складно зчитувати.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badCompare"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Heatmap для розподілу</h3>
+            <p class="muted">Колір показує інтенсивність у перетині категорій.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodHeat"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Лише середнє значення</h3>
+            <p class="muted">Агрегація приховує розкид і аномалії.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badHeat"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Scatter для розподілу</h3>
+            <p class="muted">Показує розкид точок і кластери.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodScatter"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Одна середня колонка</h3>
+            <p class="muted">Ховає варіативність і аномалії.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badScatter"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Stacked/treemap для структури</h3>
+            <p class="muted">Відображає пропорції з підпорядкуванням.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodTreemap"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>3D-пиріг</h3>
+            <p class="muted">Деформує кути, важко порівнювати сегменти.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badTreemap"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Теплокарта з легендою</h3>
+            <p class="muted">Колір відображає інтенсивність; є шкала.</p>
+          </div>
+        </div>
+        <div id="mapGood2" class="map-small"></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Теплокарта без шкали</h3>
+            <p class="muted">Без шкали й контрасту — важко читати.</p>
+          </div>
+        </div>
+        <div id="mapBad2" class="map-small"></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Small multiples</h3>
+            <p class="muted">Окремі лінії по напрямках — читабельно.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodSmall"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Spaghetti-plot</h3>
+            <p class="muted">Багато ліній в одному полі — губиться ієрархія.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badSmall"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow success">Вдалий приклад</p>
+            <h3>Bubble кореляція</h3>
+            <p class="muted">Розмір додає третю змінну.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="goodBubble"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow warn">Невдалий приклад</p>
+            <h3>Один середній bar</h3>
+            <p class="muted">Втрачає варіативність і зв'язок між ознаками.</p>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="badBubble"></canvas></div>
+      </div>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>

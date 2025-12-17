@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "week_start": "2025-11-24",
+    "week_end": "2025-11-30",
+    "direction_name": "Оперативний напрямок \"Південь\"",
+    "classifier": {
+      "sectors_count": 3,
+      "brigades_count": 5
+    },
+    "note": "Усі дані умовні, для демонстрації структури дашборду командувача."
+  },
+  "sectors": [
+    { "id": "S1", "name": "Сектор Північний" },
+    { "id": "S2", "name": "Сектор Центральний" },
+    { "id": "S3", "name": "Сектор Південний" }
+  ],
+  "brigades": [
+    { "id": "B59", "name": "59 омбр", "sector_id": "S1" },
+    { "id": "B80", "name": "80 одшбр", "sector_id": "S1" },
+    { "id": "B36", "name": "36 обрмп", "sector_id": "S2" },
+    { "id": "B27", "name": "27 ап (артгрупа)", "sector_id": "S2" },
+    { "id": "B128", "name": "128 огшбр", "sector_id": "S3" }
+  ],
+  "metrics": [
+    {
+      "id": "enemy_fire_intensity",
+      "question": "Які райони фронту мають найвищу інтенсивність вогневого впливу противника за тиждень?",
+      "unit": "кількість обстрілів за тиждень",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 145, "prev_week": 132 },
+        { "sector_id": "S2", "current_week": 212, "prev_week": 195 },
+        { "sector_id": "S3", "current_week": 98,  "prev_week": 121 }
+      ]
+    },
+    {
+      "id": "counter_battery_effectiveness",
+      "question": "На яких ділянках спостерігаються системні провали / успіхи в контрбатарейній боротьбі?",
+      "unit": "частка ворожих батарей, пригнічених протягом 30 хв після виявлення",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.46, "prev_week": 0.39 },
+        { "sector_id": "S2", "current_week": 0.37, "prev_week": 0.35 },
+        { "sector_id": "S3", "current_week": 0.52, "prev_week": 0.50 }
+      ]
+    },
+    {
+      "id": "breakthrough_risk_index",
+      "question": "Які напрямки мають найбільший ризик прориву противника з урахуванням щільності військ та загороджень?",
+      "unit": "індекс ризику (0–1)",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.42, "prev_week": 0.44 },
+        { "sector_id": "S2", "current_week": 0.71, "prev_week": 0.65 },
+        { "sector_id": "S3", "current_week": 0.33, "prev_week": 0.37 }
+      ]
+    },
+    {
+      "id": "kill_chain_time",
+      "question": "Який середній час від виявлення цілі до її ураження (kill chain) по секторах?",
+      "unit": "хвилини (медіана)",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 21, "prev_week": 24 },
+        { "sector_id": "S2", "current_week": 28, "prev_week": 30 },
+        { "sector_id": "S3", "current_week": 19, "prev_week": 20 }
+      ]
+    },
+    {
+      "id": "uav_recon_coverage",
+      "question": "Який рівень насиченості району операції засобами БПЛА та покриття пріоритетних зон розвідкою?",
+      "unit": "частка пріоритетних квадратів, де здійснено ≥1 політ БПЛА/добу",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.78, "prev_week": 0.73 },
+        { "sector_id": "S2", "current_week": 0.69, "prev_week": 0.66 },
+        { "sector_id": "S3", "current_week": 0.82, "prev_week": 0.80 }
+      ]
+    },
+    {
+      "id": "ew_effectiveness_against_uav",
+      "question": "На яких напрямках радіоелектронна боротьба найбільш ефективно знижує результативність ворожих БПЛА?",
+      "unit": "частка місій ворожих БПЛА, зірваних засобами РЕБ",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.41, "prev_week": 0.35 },
+        { "sector_id": "S2", "current_week": 0.36, "prev_week": 0.34 },
+        { "sector_id": "S3", "current_week": 0.49, "prev_week": 0.43 }
+      ]
+    },
+    {
+      "id": "air_defence_intercept_rate",
+      "question": "Які елементи ППО перехоплюють найбільшу частку повітряних загроз?",
+      "unit": "частка перехоплених цілей від виявлених",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.64, "prev_week": 0.61 },
+        { "sector_id": "S2", "current_week": 0.57, "prev_week": 0.55 },
+        { "sector_id": "S3", "current_week": 0.71, "prev_week": 0.69 }
+      ]
+    },
+    {
+      "id": "ammo_expenditure_vs_norm",
+      "question": "Як розподіляється витрата боєприпасів по бригадах відносно встановлених норм?",
+      "unit": "частка від тижневої норми (1.0 = 100%)",
+      "breakdown": "brigade",
+      "values": [
+        { "brigade_id": "B59", "current_week": 0.93, "prev_week": 0.88 },
+        { "brigade_id": "B80", "current_week": 1.08, "prev_week": 1.02 },
+        { "brigade_id": "B36", "current_week": 0.97, "prev_week": 0.95 },
+        { "brigade_id": "B27", "current_week": 1.15, "prev_week": 1.10 },
+        { "brigade_id": "B128", "current_week": 0.89, "prev_week": 0.92 }
+      ]
+    },
+    {
+      "id": "logistics_timely_deliveries",
+      "question": "Який відсоток вантажів прибуває вчасно до підрозділів у кожному секторі?",
+      "unit": "частка доставок у межах нормативу часу",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.86, "prev_week": 0.82 },
+        { "sector_id": "S2", "current_week": 0.78, "prev_week": 0.80 },
+        { "sector_id": "S3", "current_week": 0.91, "prev_week": 0.88 }
+      ]
+    },
+    {
+      "id": "medevac_time",
+      "question": "Які ділянки фронту мають найгірше медичне прикриття за часом евакуації поранених?",
+      "unit": "хвилини (медіана від поранення до стабілізаційного пункту)",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 54, "prev_week": 59 },
+        { "sector_id": "S2", "current_week": 71, "prev_week": 74 },
+        { "sector_id": "S3", "current_week": 49, "prev_week": 51 }
+      ]
+    },
+    {
+      "id": "combat_readiness_index",
+      "question": "Як змінюється рівень боєздатності підрозділів після поточних боїв та ротацій?",
+      "unit": "індекс боєготовності (0–1)",
+      "breakdown": "brigade",
+      "values": [
+        { "brigade_id": "B59",  "current_week": 0.74, "prev_week": 0.72 },
+        { "brigade_id": "B80",  "current_week": 0.69, "prev_week": 0.71 },
+        { "brigade_id": "B36",  "current_week": 0.81, "prev_week": 0.79 },
+        { "brigade_id": "B27",  "current_week": 0.77, "prev_week": 0.76 },
+        { "brigade_id": "B128", "current_week": 0.68, "prev_week": 0.66 }
+      ]
+    },
+    {
+      "id": "hq_response_time",
+      "question": "Який середній час реакції штабів різних рівнів від отримання доповіді до віддання розпорядження?",
+      "unit": "хвилини (медіана)",
+      "breakdown": "hq_level",
+      "values": [
+        { "hq_level": "бригада",          "current_week": 16, "prev_week": 18 },
+        { "hq_level": "секторний штаб",   "current_week": 24, "prev_week": 26 },
+        { "hq_level": "оперативний штаб", "current_week": 32, "prev_week": 35 }
+      ]
+    },
+    {
+      "id": "forecast_accuracy",
+      "question": "Які типи ворожих дій найкраще прогнозуються поточною моделлю і який загальний рівень точності прогнозу?",
+      "unit": "частка коректно передбачених основних дій противника",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 0.63, "prev_week": 0.59 },
+        { "sector_id": "S2", "current_week": 0.57, "prev_week": 0.55 },
+        { "sector_id": "S3", "current_week": 0.69, "prev_week": 0.66 }
+      ]
+    },
+    {
+      "id": "reserve_movement_tempo",
+      "question": "Як змінюється темп висування резервів від моменту команди до виходу на визначені рубежі?",
+      "unit": "години (медіана)",
+      "breakdown": "sector",
+      "values": [
+        { "sector_id": "S1", "current_week": 5.2, "prev_week": 5.6 },
+        { "sector_id": "S2", "current_week": 6.1, "prev_week": 6.3 },
+        { "sector_id": "S3", "current_week": 4.7, "prev_week": 4.9 }
+      ]
+    }
+  ]
+}
