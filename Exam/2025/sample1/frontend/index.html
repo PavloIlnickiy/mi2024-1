@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Дашборд інцидентів (мінімальний)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="bar">
+    <h1>Дашборд інцидентів</h1>
+    <div class="right">
+      <span id="statusDot" class="dot idle"></span>
+      <span id="statusText" class="muted">готово</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Filters -->
+    <section class="card">
+      <h2>Фільтри</h2>
+      <div class="grid">
+        <label>Дата від
+          <input id="date_from" type="date" />
+        </label>
+        <label>Дата до
+          <input id="date_to" type="date" />
+        </label>
+        <label>Сектор (GRID_###)
+          <input id="sector" type="text" placeholder="GRID_042" maxlength="32"/>
+        </label>
+        <label>Напрямок
+          <select id="direction">
+            <option value="">(будь-який)</option>
+            <option>N</option><option>NE</option><option>E</option><option>SE</option>
+            <option>S</option><option>SW</option><option>W</option><option>NW</option>
+          </select>
+        </label>
+        <label>Тип засобу
+          <select id="source_type">
+            <option value="">(будь-який)</option>
+            <option>ARTILLERY</option>
+            <option>MORTAR</option>
+            <option>MLRS</option>
+            <option>UAV_DROP</option>
+            <option>OTHER</option>
+          </select>
+        </label>
+        <label>Мін. інтенсивність (1..5)
+          <input id="min_intensity" type="number" min="1" max="5" placeholder="3"/>
+        </label>
+        <label>Агрегація (тренд/heatmap)
+          <select id="bucket">
+            <option value="day">day</option>
+            <option value="week" selected>week</option>
+          </select>
+        </label>
+        <div class="actions">
+          <button id="applyBtn">Застосувати</button>
+          <button id="resetBtn" class="ghost">Скинути</button>
+        </div>
+      </div>
+
+      <div id="errorBox" class="error hidden"></div>
+    </section>
+
+    <!-- KPI -->
+    <section class="kpis">
+      <div class="kpi">
+        <div class="kpiTitle">Всього інцидентів</div>
+        <div id="kpiTotal" class="kpiValue">—</div>
+      </div>
+      <div class="kpi">
+        <div class="kpiTitle">Сумарні постріли</div>
+        <div id="kpiRounds" class="kpiValue">—</div>
+      </div>
+      <div class="kpi">
+        <div class="kpiTitle">Сер. інтенсивність</div>
+        <div id="kpiAvg" class="kpiValue">—</div>
+      </div>
+      <div class="kpi">
+        <div class="kpiTitle">Топ-напрямок</div>
+        <div id="kpiTopDir" class="kpiValue">—</div>
+      </div>
+    </section>
+
+    <!-- Trend + Anomaly -->
+    <section class="card">
+      <div class="row">
+        <h2>Тренд (кількість по day/week)</h2>
+        <div class="muted">Аномалії: &gt; (середнє + 2σ)</div>
+      </div>
+      <div id="trendChart" class="chart"></div>
+      <div id="anomalyBox" class="note muted"></div>
+    </section>
+
+    <!-- Distributions -->
+    <section class="twoCols">
+      <section class="card">
+        <h2>Розподіл за типами</h2>
+        <div id="bySourceChart" class="chart small"></div>
+      </section>
+      <section class="card">
+        <h2>Розподіл за напрямками</h2>
+        <div id="byDirChart" class="chart small"></div>
+      </section>
+    </section>
+
+    <!-- Heatmap -->
+    <section class="card">
+      <h2>Heatmap (sector × day/week)</h2>
+      <div id="heatmap" class="heatmap"></div>
+    </section>
+
+    <!-- Top sectors -->
+    <section class="card">
+      <h2>Топ-5 секторів</h2>
+      <ol id="topSectors" class="toplist"></ol>
+    </section>
+
+    <!-- Table -->
+    <section class="card">
+      <div class="row">
+        <h2>Інциденти</h2>
+        <div class="pager">
+          <button id="prevPage" class="ghost">←</button>
+          <span class="muted"><span id="pageNum">1</span>/<span id="pageTotal">1</span></span>
+          <button id="nextPage" class="ghost">→</button>
+          <select id="pageSize">
+            <option>10</option>
+            <option selected>25</option>
+            <option>50</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Час</th>
+            <th>Сектор</th>
+            <th>Напр.</th>
+            <th>Тип</th>
+            <th>Інт.</th>
+            <th>Постріли</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modalCard">
+      <div class="modalHeader">
+        <strong>Деталі інциденту</strong>
+        <button id="closeModal" class="ghost">✕</button>
+      </div>
+      <pre id="modalBody" class="modalBody"></pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
